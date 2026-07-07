@@ -1,0 +1,230 @@
+/* ============================================================
+   GENTLE PROCEDURES — Shared Design System  (v2 · Soneva family)
+   Serif-led · centered · warm cream / espresso / gold · no italics
+   Canela (display) + Canela Text (body serif) + Söhne (labels)
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+@font-face{font-family:"Canela";src:url("../fonts/canela-thin.otf") format("opentype");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela";src:url("../fonts/canela-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela";src:url("../fonts/canela-regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela";src:url("../fonts/canela-medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+
+@font-face{font-family:"Canela Text";src:url("../fonts/canela-text-thin.otf") format("opentype");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela Text";src:url("../fonts/canela-text-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela Text";src:url("../fonts/canela-text-regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela Text";src:url("../fonts/canela-text-medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-book.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-semibold.otf") format("opentype");font-weight:600;font-style:normal;font-display:swap}
+
+/* ---------- Tokens ---------- */
+:root{
+  /* warm neutrals */
+  --paper:#EFE7D6;        /* primary warm cream */
+  --paper-2:#F4EEE0;      /* lighter */
+  --paper-3:#F7F2E8;
+  --sand:#E5D9C4;
+  --stone:#D6C4A6;        /* travertine */
+  --taupe:#9C8C74;
+  --mocha:#6E5F4B;
+
+  /* warm dark (espresso) */
+  --espresso:#211A12;
+  --espresso-2:#2C2318;
+  --ink:#2A2115;          /* warm dark-brown text */
+
+  /* accents */
+  --gold:#B08A4C;         /* muted gold (Soneva) */
+  --gold-soft:#C7A876;
+  --forest:#33422E;       /* botanical green (Diamond Rose / Concept B) */
+  --forest-deep:#25311F;
+  --sage:#6E7A5E;
+
+  /* brand (logo) — used sparingly */
+  --teal:#1C6E7A;
+
+  /* semantic — concepts override --accent / --dark-bg */
+  --bg:var(--paper);
+  --fg:var(--ink);
+  --accent:var(--gold);
+  --dark-bg:var(--espresso);
+  --muted:rgba(42,33,21,.62);
+  --line:rgba(42,33,21,.18);
+  --line-soft:rgba(42,33,21,.1);
+
+  --maxw:1480px;
+  --measure:640px;
+  --gutter:clamp(20px,5vw,80px);
+  --nav-h:82px;
+
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  /* type ramp */
+  --fs-mega:clamp(3rem,9vw,9.5rem);
+  --fs-h1:clamp(2.6rem,6.4vw,6rem);
+  --fs-h2:clamp(2.1rem,4.4vw,4rem);
+  --fs-h3:clamp(1.6rem,2.6vw,2.4rem);
+  --fs-lead:clamp(1.18rem,1.6vw,1.6rem);
+  --fs-body:clamp(1rem,1.1vw,1.14rem);
+  --fs-eyebrow:clamp(.66rem,.78vw,.76rem);
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Canela Text",Georgia,serif;
+  font-weight:300;
+  background:var(--bg);
+  color:var(--fg);
+  font-size:var(--fs-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,h4,p{margin:0;font-weight:inherit}
+::selection{background:var(--accent);color:var(--paper-2)}
+
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* ---------- Type helpers ---------- */
+.serif{font-family:"Canela",Georgia,serif;font-weight:300}
+.display{font-family:"Canela",Georgia,serif;font-weight:300;line-height:1.04;letter-spacing:-.005em}
+.sans{font-family:"Sohne",-apple-system,sans-serif}
+
+.label{
+  font-family:"Sohne",sans-serif;font-weight:500;
+  font-size:var(--fs-eyebrow);text-transform:uppercase;letter-spacing:.32em;
+  color:var(--accent);display:inline-flex;align-items:center;gap:.85em;
+}
+.label::before,.label--dot::after{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex:none;opacity:.85}
+.label--plain::before{display:none}
+.label--center{justify-content:center}
+
+/* line-mask reveal */
+.line-mask{display:block;overflow:hidden;padding-block:.03em}
+.line-inner{display:block;transform:translateY(110%);will-change:transform}
+
+[data-reveal]{opacity:0;transform:translateY(26px);will-change:transform,opacity}
+[data-reveal-fade]{opacity:0;will-change:opacity}
+
+/* ---------- Layout ---------- */
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.section{position:relative;padding-block:clamp(96px,15vh,200px)}
+.center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.measure{max-width:var(--measure);margin-inline:auto}
+
+/* ---------- Buttons (rectangular, understated) ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.7em;
+  font-family:"Sohne";font-weight:500;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:1.15em 2.4em;border:1px solid var(--accent);border-radius:0;
+  color:var(--paper-2);background:var(--accent);overflow:hidden;isolation:isolate;
+  transition:color .55s var(--ease),border-color .55s var(--ease);
+}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:translateY(101%);transition:transform .55s var(--ease)}
+.btn:hover::after{transform:translateY(0)}
+.btn:hover{color:var(--paper-2);border-color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost::after{background:var(--ink)}
+.btn--ghost:hover{color:var(--paper-2);border-color:var(--ink)}
+.btn--light{background:transparent;color:var(--paper-2);border-color:rgba(244,238,224,.5)}
+.btn--light::after{background:var(--paper-2)}
+.btn--light:hover{color:var(--ink);border-color:var(--paper-2)}
+.btn--solid-light{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+.btn--solid-light::after{background:var(--accent)}
+.btn--solid-light:hover{color:var(--paper-2)}
+
+/* quiet text link */
+.tlink{position:relative;display:inline-flex;align-items:center;gap:.55em;font-family:"Sohne";font-weight:500;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);padding-bottom:3px}
+.tlink::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.tlink:hover::after{transform:scaleX(1);transform-origin:left}
+.tlink .tlink-arrow{transition:transform .45s var(--ease)}
+.tlink:hover .tlink-arrow{transform:translateX(4px)}
+
+/* ---------- Navigation (centered · Soneva) ---------- */
+.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:70;display:flex;align-items:center;
+  transition:background .6s var(--ease),backdrop-filter .6s var(--ease),height .5s var(--ease),border-color .6s var(--ease);
+  border-bottom:1px solid transparent}
+.nav__inner{width:100%;max-width:1720px;margin-inline:auto;padding-inline:var(--gutter);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem}
+.nav__menu{justify-self:start;display:inline-flex;align-items:center;gap:.7em;
+  font-family:"Sohne";font-weight:500;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--nav-fg,#F4EEE0)}
+.nav__menu .bars{display:flex;flex-direction:column;gap:4px}
+.nav__menu .bars span{width:22px;height:1.5px;background:currentColor;display:block;transition:.4s}
+.nav__logo{justify-self:center;display:flex;align-items:center;height:30px;position:relative}
+.nav__logo img{height:100%;width:auto;transition:opacity .4s var(--ease)}
+.nav__logo .logo-dark{position:absolute;inset:0;opacity:0}
+.nav__cta{justify-self:end}
+.nav__book{font-family:"Sohne";font-weight:500;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--nav-fg,#F4EEE0);border:1px solid rgba(244,238,224,.4);padding:.85em 1.7em;
+  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+.nav__book:hover{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+.nav.is-solid{background:rgba(239,231,214,.9);backdrop-filter:blur(14px) saturate(1.1);border-color:var(--line-soft);height:70px;--nav-fg:var(--ink)}
+.nav.is-solid .nav__book{border-color:var(--line)}
+.nav.is-solid .logo-light{opacity:0}
+.nav.is-solid .logo-dark{opacity:1}
+.nav.is-hidden{transform:translateY(-100%);transition:transform .5s var(--ease),background .6s,height .5s}
+
+/* ---------- Footer ---------- */
+.footer{position:relative;background:var(--dark-bg);color:var(--paper-2);overflow:hidden}
+.footer__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;padding:clamp(80px,11vw,150px) var(--gutter) 42px;text-align:center}
+.footer__mark{width:52px;height:auto;margin:0 auto 2rem;opacity:.9}
+.footer__big{font-family:"Canela";font-weight:300;font-size:var(--fs-h1);line-height:1.05;margin-bottom:2.4rem}
+.footer__actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(50px,8vw,90px)}
+.footer__rule{height:1px;background:rgba(244,238,224,.16);margin:0 auto clamp(40px,6vw,64px);max-width:1100px}
+.footer__cols{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(2rem,7vw,7rem);text-align:center}
+.footer__col h4{font-family:"Sohne";font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.26em;color:var(--accent);margin-bottom:1.1rem}
+.footer__col p,.footer__col a{color:rgba(244,238,224,.72);font-size:.98rem;line-height:1.9;font-family:"Canela Text";font-weight:300}
+.footer__col a{display:block;transition:color .4s}
+.footer__col a:hover{color:var(--paper-2)}
+.footer__base{margin-top:clamp(50px,8vw,90px);padding-top:32px;border-top:1px solid rgba(244,238,224,.14);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem;font-family:"Sohne";font-size:.72rem;
+  letter-spacing:.04em;color:rgba(244,238,224,.5)}
+
+/* ---------- Preloader ---------- */
+.preloader{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.preloader__mark{width:64px;height:auto;opacity:0}
+.preloader__bar{width:min(240px,44vw);height:1px;background:var(--line);position:relative;overflow:hidden}
+.preloader__bar span{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:var(--accent)}
+.preloader__word{overflow:hidden}
+.preloader__word span{display:block;font-family:"Sohne";font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--taupe);transform:translateY(110%)}
+.preloader__count{position:absolute;bottom:7vh;right:var(--gutter);font-family:"Canela";font-weight:300;font-size:clamp(2.4rem,7vw,5rem);color:var(--ink);line-height:1;opacity:.85}
+.preloader__count small{font-family:"Sohne";font-size:.28em;vertical-align:top;letter-spacing:.1em;opacity:.6}
+
+/* ---------- grain ---------- */
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.03;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- custom cursor ---------- */
+.cursor{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:150;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .3s}
+.cursor--ring{width:38px;height:38px;background:transparent;border:1px solid rgba(176,138,76,.5);transition:width .4s var(--ease),height .4s var(--ease),transform .12s linear,opacity .3s}
+body.cursor-hover .cursor{width:0;height:0}
+body.cursor-hover .cursor--ring{width:64px;height:64px}
+@media (hover:none){.cursor{display:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .line-inner{transform:none!important}
+  [data-reveal],[data-reveal-fade]{opacity:1!important;transform:none!important}
+  *{scroll-behavior:auto!important}
+}
+
+/* ---------- responsive shared ---------- */
+@media (max-width:820px){
+  :root{--nav-h:66px}
+  .nav__menu .txt{display:none}
+  .footer__cols{gap:2rem 3rem}
+}

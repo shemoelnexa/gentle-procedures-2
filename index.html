@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gentle Procedures — Two Concepts</title>
+<link rel="icon" type="image/png" href="assets/img/logo-mark.png" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<style>
+  body{background:var(--paper);min-height:100svh;display:flex;flex-direction:column}
+  .idx{flex:1;display:flex;flex-direction:column;padding:clamp(26px,4.5vh,52px) var(--gutter) clamp(24px,4vh,44px)}
+  .idx__top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .idx__logo{height:28px}
+  .idx__meta{font-family:"Sohne";font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe)}
+  .idx__head{text-align:center;margin-top:clamp(34px,7vh,88px)}
+  .idx__orn{width:1px;height:52px;background:linear-gradient(var(--gold),transparent);margin:0 auto 1.8rem}
+  .idx__eyebrow{justify-content:center;margin-bottom:1.5rem}
+  .idx__title{font-family:"Canela";font-weight:200;font-size:clamp(2.4rem,5.2vw,4.6rem);line-height:1.04;color:var(--ink);letter-spacing:-.01em}
+  .idx__sub{font-family:"Canela Text";font-weight:300;margin:1.4rem auto 0;font-size:var(--fs-lead);color:var(--mocha);max-width:56ch;line-height:1.5}
+  .idx__grid{margin-top:clamp(30px,5vh,58px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2vw,28px);flex:1;align-items:stretch}
+  .ccard{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:min(48vh,500px);
+    overflow:hidden;background:var(--sand);isolation:isolate;color:var(--paper-2)}
+  .ccard__img{position:absolute;inset:0;z-index:-2}
+  .ccard__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease)}
+  .ccard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,15,9,.12) 0%,rgba(20,15,9,.04) 40%,rgba(20,15,9,.72) 100%)}
+  .ccard:hover .ccard__img img{transform:scale(1.05)}
+  .ccard__body{padding:clamp(26px,3vw,46px);text-align:center}
+  .ccard__label{font-family:"Sohne";font-weight:500;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:1rem}
+  .ccard--b .ccard__label{color:var(--gold-soft)}
+  .ccard__name{font-family:"Canela";font-weight:300;font-size:clamp(1.9rem,3.2vw,2.9rem);line-height:1.04}
+  .ccard__desc{font-family:"Canela Text";font-weight:300;margin:1rem auto 0;font-size:1.02rem;color:rgba(244,238,224,.84);max-width:40ch;line-height:1.5}
+  .ccard__cta{margin-top:1.7rem;display:inline-flex;align-items:center;gap:.6em;font-family:"Sohne";font-weight:500;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+  .ccard__cta .a{transition:transform .5s var(--ease)}
+  .ccard:hover .ccard__cta .a{transform:translateX(6px)}
+  .ccard__no{position:absolute;top:clamp(20px,2.4vw,34px);left:50%;transform:translateX(-50%);font-family:"Canela";font-weight:300;
+    font-size:clamp(1.5rem,2.4vw,2rem);color:rgba(244,238,224,.55);z-index:1;line-height:1}
+  .idx__foot{margin-top:clamp(22px,3vh,38px);display:flex;justify-content:space-between;gap:1rem;
+    font-family:"Sohne";font-size:.72rem;letter-spacing:.04em;color:var(--taupe)}
+  [data-fade]{opacity:0;transform:translateY(22px);animation:fu 1s var(--ease) forwards}
+  @keyframes fu{to{opacity:1;transform:none}}
+  @media (max-width:820px){.idx__grid{grid-template-columns:1fr}.ccard{min-height:42vh}}
+</style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="idx">
+    <div class="idx__top" data-fade style="animation-delay:.1s">
+      <img class="idx__logo" src="assets/img/logo.png" alt="Gentle Procedures Clinic" />
+      <span class="idx__meta">Design Concepts · 2026</span>
+    </div>
+
+    <header class="idx__head">
+      <div class="idx__orn" data-fade style="animation-delay:.2s"></div>
+      <p class="label label--plain idx__eyebrow" data-fade style="animation-delay:.3s">For Gentle Procedures · Dubai</p>
+      <h1 class="idx__title" data-fade style="animation-delay:.4s">Two concepts, one quiet standard.</h1>
+      <p class="idx__sub" data-fade style="animation-delay:.52s">Both drawn from the world of Soneva and Diamond Rose — serif, warm, unhurried. The same brand, expressed through two distinct temperaments. Choose one to enter.</p>
+    </header>
+
+    <div class="idx__grid">
+      <a class="ccard ccard--a" href="concept-a.html" data-fade style="animation-delay:.66s">
+        <span class="ccard__no">I</span>
+        <div class="ccard__img"><img src="assets/img/reception.jpg" alt="Concept A preview" /></div>
+        <div class="ccard__body">
+          <span class="ccard__label">Concept A</span>
+          <h2 class="ccard__name">The Stillness</h2>
+          <p class="ccard__desc">Centered and symmetric, all-serif, cinematic cream-and-espresso chapters with a muted gold thread. Reverent and quiet.</p>
+          <span class="ccard__cta">Enter <span class="a" aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="ccard ccard--b" href="concept-b.html" data-fade style="animation-delay:.8s">
+        <span class="ccard__no">II</span>
+        <div class="ccard__img"><img src="assets/img/lounge-dusk.jpg" alt="Concept B preview" /></div>
+        <div class="ccard__body">
+          <span class="ccard__label">Concept B</span>
+          <h2 class="ccard__name">The Quiet Hours</h2>
+          <p class="ccard__desc">A dark, cinematic counterpoint — near-black and gold, photography-led full-bleed scenes, a fixed chapter rail. Intimate and immersive.</p>
+          <span class="ccard__cta">Enter <span class="a" aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="idx__foot" data-fade style="animation-delay:.92s">
+      <span>Exceptional care, delivered gently.</span>
+      <span>A member of The Pollock Group</span>
+    </div>
+  </div>
+</body>
+</html>

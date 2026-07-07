@@ -1,0 +1,10 @@
+﻿const puppeteer=require("puppeteer-core"),path=require("path"),fs=require("fs"),http=require("http");
+const ROOT=path.resolve(".");const T={".html":"text/html",".css":"text/css",".js":"text/javascript",".jpg":"image/jpeg",".png":"image/png",".otf":"font/otf"};
+const s=http.createServer((q,r)=>{let p=decodeURIComponent(q.url.split("?")[0]);if(p=="/")p="/index.html";fs.readFile(path.join(ROOT,p),(e,d)=>{if(e){r.writeHead(404);r.end();return}r.writeHead(200,{"Content-Type":T[path.extname(p)]||"application/octet-stream"});r.end(d)})});
+(async()=>{await new Promise(r=>s.listen(4192,"127.0.0.1",r));
+const b=await puppeteer.launch({executablePath:"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",headless:true,args:["--no-sandbox","--force-color-profile=srgb","--hide-scrollbars"],defaultViewport:{width:1440,height:620,deviceScaleFactor:1.5}});
+const p=await b.newPage();await p.emulateMediaFeatures([{name:"prefers-reduced-motion",value:"reduce"}]);
+await p.goto("http://127.0.0.1:4192/concept-a.html",{waitUntil:"networkidle0"});await new Promise(r=>setTimeout(r,1200));
+await p.evaluate(()=>document.querySelector(".stseal").scrollIntoView({block:"center"}));await new Promise(r=>setTimeout(r,500));
+const out="C:\\Users\\Shemoel\\AppData\\Local\\Temp\\claude\\D--Code-Files-gentle-procedures-2\\bc786df6-c883-4b0a-b7d8-276d175a2d16\\scratchpad\\astd\\seal.png";
+await p.screenshot({path:out});await b.close();s.close();console.log("done");})();
