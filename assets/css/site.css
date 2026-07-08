@@ -83,9 +83,9 @@
 .chapter__img{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease)}
 .chapter__img.is-active{opacity:1}
 
-.chapter__nav{position:absolute;top:clamp(44px,9vh,96px);left:50%;transform:translateX(-50%);z-index:2;
+.chapter__nav{position:absolute;top:clamp(44px,9vh,96px);left:0;right:0;z-index:2;
   display:flex;justify-content:center;align-items:baseline;gap:clamp(1.2rem,2.6vw,2.4rem);flex-wrap:nowrap;
-  width:max-content;max-width:92vw}
+  padding-inline:clamp(20px,5vw,80px)}
 .chapter__nav button{flex:none;font-family:"Sohne";font-weight:500;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,238,224,.62);
   white-space:nowrap;padding-bottom:.6em;border-bottom:1px solid transparent;transition:color .4s var(--ease),border-color .4s var(--ease)}
 .chapter__nav button:hover{color:rgba(244,238,224,.92)}

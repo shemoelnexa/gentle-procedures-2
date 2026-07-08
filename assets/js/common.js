@@ -3,9 +3,7 @@
    Lenis smooth scroll + GSAP/ScrollTrigger + reveals
    ============================================================ */
 (function () {
-  // `no-motion` on <html> forces the fully-static (reduced) path — see base.css STATIC MODE.
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    || document.documentElement.classList.contains('no-motion');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
   gsap.registerPlugin(ScrollTrigger);
 
@@ -218,7 +216,7 @@
 
   /* ---------- Custom cursor ---------- */
   function initCursor() {
-    if (isTouch || reduced) return;
+    if (isTouch) return;
     const dot = document.createElement('div'); dot.className = 'cursor';
     const ring = document.createElement('div'); ring.className = 'cursor cursor--ring';
     document.body.append(dot, ring);

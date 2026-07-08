@@ -4,9 +4,7 @@
    counters, hero intro. Light, warm, luxurious.
    ============================================================ */
 (function () {
-  // `no-motion` on <html> forces the fully-static (reduced) path — see base.css STATIC MODE.
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    || document.documentElement.classList.contains('no-motion');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
   gsap.registerPlugin(ScrollTrigger);
 
