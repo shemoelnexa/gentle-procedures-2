@@ -223,6 +223,33 @@ body.cursor-hover .cursor--ring{width:64px;height:64px}
   *{scroll-behavior:auto!important}
 }
 
+/* ============================================================
+   STATIC MODE — motion temporarily disabled on the concept pages.
+   Toggle by adding/removing `no-motion` on the <html> element
+   (and it is honoured by common.js / concept-b.js). Remove this
+   block + the class to bring every animation back exactly as it was.
+   ============================================================ */
+html.no-motion *,
+html.no-motion *::before,
+html.no-motion *::after{
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+}
+/* force every animated-initial state to its final, visible resting state */
+html.no-motion [data-reveal],
+html.no-motion [data-reveal-fade],
+html.no-motion [data-hero-el],
+html.no-motion .concept-b [data-b],
+html.no-motion .concept-b [data-b-img]{
+  opacity:1!important;transform:none!important;filter:none!important;visibility:visible!important;
+}
+html.no-motion .line-inner{transform:none!important}
+html.no-motion [data-b-head] .b-line,
+html.no-motion .bhero__title .b-line{clip-path:none!important}
+/* keep the nav put — no hide-on-scroll snap without its transition */
+html.no-motion .nav.is-hidden{transform:none!important}
+
 /* ---------- responsive shared ---------- */
 @media (max-width:820px){
   :root{--nav-h:66px}
