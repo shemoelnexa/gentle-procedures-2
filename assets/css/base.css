@@ -31,26 +31,19 @@
   --taupe:#9C8C74;
   --mocha:#6E5F4B;
 
-  /* warm dark (espresso) */
+  /* warm dark (espresso) — used for photo scrims/overlays, never as a section theme */
   --espresso:#211A12;
   --espresso-2:#2C2318;
   --ink:#2A2115;          /* warm dark-brown text */
 
-  /* accents */
-  --gold:#B08A4C;         /* muted gold (Soneva) */
-  --gold-soft:#C7A876;
-  --forest:#33422E;       /* botanical green (Diamond Rose / Concept B) */
-  --forest-deep:#25311F;
-  --sage:#6E7A5E;
+  /* accents — sampled from the Gentle Procedures logo */
+  --teal:#1E4E60;         /* primary accent, from the wordmark's slate-teal */
+  --teal-soft:#6FA8B4;    /* lighter tint, for labels set over full-bleed photography */
 
-  /* brand (logo) — used sparingly */
-  --teal:#1C6E7A;
-
-  /* semantic — concepts override --accent / --dark-bg */
+  /* semantic */
   --bg:var(--paper);
   --fg:var(--ink);
-  --accent:var(--gold);
-  --dark-bg:var(--espresso);
+  --accent:var(--teal);
   --muted:rgba(42,33,21,.62);
   --line:rgba(42,33,21,.18);
   --line-soft:rgba(42,33,21,.1);
@@ -112,11 +105,12 @@ html.lenis,html.lenis body{height:auto}
 .label--plain::before{display:none}
 .label--center{justify-content:center}
 
-/* line-mask reveal */
-.line-mask{display:block;overflow:hidden;padding-block:.03em}
+/* line-mask reveal — extra bottom room so descenders (g, y, p) aren't clipped by overflow:hidden;
+   negative margin cancels the added gap so line rhythm is unchanged */
+.line-mask{display:block;overflow:hidden;padding:.06em 0 .2em;margin-bottom:-.18em}
 .line-inner{display:block;transform:translateY(110%);will-change:transform}
 
-[data-reveal]{opacity:0;transform:translateY(26px);will-change:transform,opacity}
+[data-reveal]{opacity:0;transform:translateY(26px);filter:blur(9px);will-change:transform,opacity,filter}
 [data-reveal-fade]{opacity:0;will-change:opacity}
 
 /* ---------- Layout ---------- */
@@ -179,21 +173,28 @@ html.lenis,html.lenis body{height:auto}
 .nav.is-solid .logo-dark{opacity:1}
 .nav.is-hidden{transform:translateY(-100%);transition:transform .5s var(--ease),background .6s,height .5s}
 
-/* ---------- Footer ---------- */
-.footer{position:relative;background:var(--dark-bg);color:var(--paper-2);overflow:hidden}
-.footer__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;padding:clamp(80px,11vw,150px) var(--gutter) 42px;text-align:center}
-.footer__mark{width:52px;height:auto;margin:0 auto 2rem;opacity:.9}
-.footer__big{font-family:"Canela";font-weight:300;font-size:var(--fs-h1);line-height:1.05;margin-bottom:2.4rem}
-.footer__actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(50px,8vw,90px)}
-.footer__rule{height:1px;background:rgba(244,238,224,.16);margin:0 auto clamp(40px,6vw,64px);max-width:1100px}
-.footer__cols{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(2rem,7vw,7rem);text-align:center}
-.footer__col h4{font-family:"Sohne";font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.26em;color:var(--accent);margin-bottom:1.1rem}
-.footer__col p,.footer__col a{color:rgba(244,238,224,.72);font-size:.98rem;line-height:1.9;font-family:"Canela Text";font-weight:300}
-.footer__col a{display:block;transition:color .4s}
-.footer__col a:hover{color:var(--paper-2)}
-.footer__base{margin-top:clamp(50px,8vw,90px);padding-top:32px;border-top:1px solid rgba(244,238,224,.14);
-  display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem;font-family:"Sohne";font-size:.72rem;
-  letter-spacing:.04em;color:rgba(244,238,224,.5)}
+/* ---------- Footer (light · columns + newsletter + wordmark watermark) ---------- */
+.footer{position:relative;background:var(--stone);color:var(--ink);overflow:hidden}
+.footer__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;
+  padding:clamp(64px,9vw,120px) var(--gutter) clamp(150px,22vw,300px);text-align:left}
+.footer__cols{display:grid;grid-template-columns:repeat(4,0.85fr) 1.3fr;gap:clamp(1.6rem,3vw,3rem)}
+.footer__col h4{font-family:"Sohne";font-weight:500;font-size:.66rem;text-transform:uppercase;letter-spacing:.2em;color:var(--taupe);margin-bottom:1.4rem}
+.footer__col a{display:block;color:var(--ink);font-family:"Canela Text";font-weight:300;font-size:1.04rem;line-height:1.95;transition:color .4s}
+.footer__col a:hover{color:var(--teal)}
+/* newsletter */
+.signup{display:flex;flex-direction:column;gap:1.4rem;max-width:340px}
+.signup__field{position:relative;display:block;border-bottom:1px solid var(--line)}
+.signup__field > span{display:block;font-family:"Sohne";font-weight:500;font-size:.72rem;letter-spacing:.01em;color:var(--ink)}
+.signup__field input{width:100%;background:none;border:none;outline:none;font-family:"Canela Text";font-weight:300;font-size:1rem;color:var(--ink);padding:.35rem 2rem .55rem 0}
+.signup__field input::placeholder{color:var(--taupe)}
+.signup__field button{position:absolute;right:0;bottom:.4rem;color:var(--teal);font-size:1.1rem;transition:transform .4s var(--ease)}
+.signup__field button:hover{transform:translateX(4px)}
+.footer__base{margin-top:clamp(40px,6vw,72px);padding-top:28px;border-top:1px solid rgba(42,33,21,.12);
+  display:flex;flex-wrap:wrap;gap:.6rem 2rem;font-family:"Sohne";font-size:.7rem;letter-spacing:.03em;color:rgba(42,33,21,.5)}
+/* giant faint wordmark, clipped at the base like the reference */
+.footer__watermark{position:absolute;left:50%;bottom:clamp(-1.5rem,-1.4vw,-0.5rem);transform:translateX(-50%);z-index:0;
+  font-family:"Canela";font-weight:300;font-size:clamp(3.4rem,15.5vw,15rem);line-height:.78;white-space:nowrap;
+  color:var(--ink);opacity:.06;letter-spacing:-.02em;pointer-events:none;user-select:none}
 
 /* ---------- Preloader ---------- */
 .preloader{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
@@ -218,7 +219,7 @@ body.cursor-hover .cursor--ring{width:64px;height:64px}
 
 @media (prefers-reduced-motion:reduce){
   .line-inner{transform:none!important}
-  [data-reveal],[data-reveal-fade]{opacity:1!important;transform:none!important}
+  [data-reveal],[data-reveal-fade]{opacity:1!important;transform:none!important;filter:none!important}
   *{scroll-behavior:auto!important}
 }
 

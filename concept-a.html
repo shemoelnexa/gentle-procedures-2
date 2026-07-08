@@ -8,9 +8,9 @@
 <meta name="description" content="Gentle Procedures Dubai — the first international clinic of The Pollock Group. Exceptional care, delivered gently." />
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 <link rel="stylesheet" href="assets/css/base.css" />
-<link rel="stylesheet" href="assets/css/concept-a.css" />
+<link rel="stylesheet" href="assets/css/site.css" />
 </head>
-<body class="concept-a">
+<body>
 
 <div class="preloader">
   <img class="preloader__mark" src="assets/img/logo-mark.png" alt="" />
@@ -34,81 +34,130 @@
 
 <main id="top">
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== HERO (giant word right · eyebrow beneath · intro bottom-left) ===== -->
   <section class="hero" id="hero">
     <div class="hero__media" data-hero-media>
-      <img src="assets/img/reception.jpg" alt="The reception at Gentle Procedures, Dubai" />
+      <img src="assets/img/lounge.jpg" alt="The lounge at Gentle Procedures, Dubai" />
       <div class="hero__scrim"></div>
     </div>
-    <div class="hero__inner">
-      <span class="hero__ornament" data-hero-el></span>
-      <p class="label label--center label--plain hero__eyebrow" data-hero-el>Gentle Procedures · Dubai</p>
-      <h1 class="hero__title display" data-hero-title>Exceptional care, delivered gently.</h1>
-      <p class="hero__note" data-hero-el>The first international clinic of The Pollock Group.</p>
+
+    <div class="hero__word">
+      <h1 class="hero__title display" data-hero-title>Gentle</h1>
+      <p class="label label--plain hero__eyebrow" data-hero-el>Exceptional care, delivered gently</p>
     </div>
+
+    <p class="hero__intro" data-hero-el>The first international clinic of The Pollock Group — a day-surgery sanctuary in Al&nbsp;Safa, Dubai, where a proven, gentle technique is held to the same quiet standard it began with.</p>
+
     <a href="#believe" class="hero__scroll" data-hero-el aria-label="Scroll">
       <span>Scroll</span><span class="hero__scroll-line"></span>
     </a>
   </section>
 
-  <!-- ===== MANIFESTO ===== -->
+  <!-- ===== ABOUT (editorial 3-column: eyebrow + big headline | tall image | copy) ===== -->
   <section class="manifesto section" id="believe">
-    <div class="wrap center">
-      <span class="orn" data-reveal></span>
-      <p class="label label--center label--plain" data-reveal>What we believe</p>
-      <h2 class="manifesto__lead display" data-split>The most meaningful care is often the gentlest.</h2>
-      <div class="manifesto__body measure" data-reveal data-delay="0.1">
+    <div class="wrap about">
+      <div class="about__left">
+        <p class="label label--plain about__eyebrow" data-reveal>(What we believe)</p>
+        <h2 class="about__head display" data-split>The most meaningful care is often the gentlest.</h2>
+      </div>
+      <div class="about__media" data-img-reveal>
+        <img src="assets/img/cafe.jpg" alt="Inside Gentle Procedures, Dubai" />
+      </div>
+      <div class="about__copy" data-reveal data-delay="0.1">
         <p>Thirty years ago, one surgeon set out to prove a single idea — that this could be virtually painless, virtually bloodless, and genuinely gentle.</p>
         <p>Well over two hundred thousand families later, that idea has come home to Dubai — held to the same quiet standard it began with.</p>
       </div>
     </div>
 
-    <div class="wrap stats" data-reveal data-delay="0.15">
-      <div class="stat"><span class="stat__n serif"><b data-count="30">0</b></span><span class="stat__l">Years, proven &amp; refined</span></div>
-      <div class="stat"><span class="stat__n serif"><b data-count="200000" data-comma="true" data-suffix="+">0</b></span><span class="stat__l">Families, and counting</span></div>
-      <div class="stat"><span class="stat__n serif"><b data-count="4">0</b></span><span class="stat__l">Continents of trust</span></div>
-      <div class="stat"><span class="stat__n serif"><b data-count="1">0</b></span><span class="stat__l">Technique, done exclusively</span></div>
+    <div class="wrap figures">
+      <div class="fig fig--1">
+        <span class="fig__n serif"><b data-count="30">0</b><span class="fig__u">yrs</span></span>
+        <span class="fig__l">of proven, refined practice.</span>
+      </div>
+      <div class="fig fig--2">
+        <span class="fig__n serif"><b data-count="4">0</b></span>
+        <span class="fig__l">continents that have come<br/>to trust the technique.</span>
+      </div>
+      <div class="fig fig--3">
+        <span class="fig__n serif"><b data-count="200">0</b><span class="fig__u">k+</span></span>
+        <span class="fig__l">families welcomed, and counting.</span>
+      </div>
+      <div class="fig fig--4">
+        <span class="fig__n serif"><b data-count="1">0</b></span>
+        <span class="fig__l">gentle technique, practised<br/>here exclusively.</span>
+      </div>
     </div>
   </section>
 
-  <!-- ===== CHAPTER · A SANCTUARY ===== -->
-  <section class="chapter" id="approach">
+  <!-- ===== CHAPTER · A SANCTUARY (Stewardship-style tabs: click swaps image + headline + copy + CTA) ===== -->
+  <section class="chapter chapter--tabs" id="approach">
     <div class="chapter__media" data-parallax-scope>
-      <img src="assets/img/lounge.jpg" alt="The lounge at Gentle Procedures" data-parallax="0.16" />
+      <div class="chapter__img is-active" data-tab-img="approach"><img src="assets/img/lounge.jpg" alt="" data-parallax="0.16" /></div>
+      <div class="chapter__img" data-tab-img="story"><img src="assets/img/kids-reception.jpg" alt="" data-parallax="0.16" /></div>
+      <div class="chapter__img" data-tab-img="day"><img src="assets/img/kids.jpg" alt="" data-parallax="0.16" /></div>
+      <div class="chapter__img" data-tab-img="promises"><img src="assets/img/treatment-2.jpg" alt="" data-parallax="0.16" /></div>
+      <div class="chapter__img" data-tab-img="team"><img src="assets/img/vitals.jpg" alt="" data-parallax="0.16" /></div>
       <div class="chapter__scrim"></div>
     </div>
+    <nav class="chapter__nav" data-reveal aria-label="Explore Gentle Procedures" role="tablist">
+      <button type="button" data-tab="story" role="tab" aria-selected="false">Our Story</button>
+      <button type="button" data-tab="approach" role="tab" aria-selected="true" class="is-current">The Approach</button>
+      <button type="button" data-tab="day" role="tab" aria-selected="false">The Day</button>
+      <button type="button" data-tab="promises" role="tab" aria-selected="false">The Promises</button>
+      <button type="button" data-tab="team" role="tab" aria-selected="false">The Team</button>
+    </nav>
     <div class="chapter__inner center">
-      <p class="label label--center label--plain label-on-dark" data-reveal>The gentle approach</p>
-      <h2 class="chapter__title display" data-split>A sanctuary, not a clinic.</h2>
-      <p class="chapter__copy" data-reveal data-delay="0.1">You are welcomed, never processed. From the message you send tonight to the drive home with your son asleep in the back, the day unfolds unhurried, warm, and entirely yours.</p>
-      <a href="#journey" class="btn btn--light" data-reveal data-delay="0.2" data-magnetic="0.2">See your family's journey</a>
+      <div class="chapter__panel" role="tabpanel">
+        <h2 class="chapter__title display">A sanctuary, not a clinic.</h2>
+        <p class="chapter__copy">You are welcomed, never processed. From the message you send tonight to the drive home with your son asleep in the back, the day unfolds unhurried, warm, and entirely yours.</p>
+        <a href="#journey" class="btn btn--light chapter__cta" data-magnetic="0.2">See your family's journey</a>
+      </div>
     </div>
   </section>
 
-  <!-- ===== THE JOURNEY (centered three chapters) ===== -->
-  <section class="journey section" id="journey">
-    <div class="wrap center">
-      <p class="label label--center label--plain" data-reveal>A glimpse of the day</p>
-      <h2 class="journey__title display" data-split>You don't have to wonder how the day will feel.</h2>
-    </div>
-    <div class="wrap journey__grid">
-      <article class="jc" data-reveal>
-        <div class="jc__img"><img src="assets/img/waiting.jpg" alt="Arriving" /></div>
-        <span class="jc__no">Chapter One</span>
-        <h3 class="jc__name display">Arriving</h3>
-        <p class="jc__copy">A sanctuary, not a clinic — you are welcomed, never processed. The day begins unhurried, warm, and entirely yours.</p>
+  <!-- ===== THE JOURNEY (pinned split · content + images change on scroll) ===== -->
+  <section class="chapters" id="journey">
+    <div class="chapters__inner">
+      <p class="chapters__eyebrow label label--plain">A glimpse of the day</p>
+      <div class="chapters__count"><b class="chapters__count-n">01</b> <span>/ 03</span></div>
+
+      <article class="crow is-active" data-step="0">
+        <div class="crow__text">
+          <span class="crow__rule" aria-hidden="true"></span>
+          <span class="crow__no serif">01</span>
+          <h2 class="crow__h display">Arriving</h2>
+          <p class="crow__p">A sanctuary, not a clinic — you are welcomed, never processed. The day begins the way it should: unhurried, warm, and entirely yours.</p>
+        </div>
+        <div class="crow__media">
+          <div class="crow__img crow__img--back"><img src="assets/img/reception.jpg" alt="Arriving at Gentle Procedures" /></div>
+          <div class="crow__img crow__img--front"><img src="assets/img/waiting.jpg" alt="" /></div>
+        </div>
       </article>
-      <article class="jc" data-reveal data-delay="0.1">
-        <div class="jc__img"><img src="assets/img/lounge-seated.jpg" alt="Held close" /></div>
-        <span class="jc__no">Chapter Two</span>
-        <h3 class="jc__name display">Held close</h3>
-        <p class="jc__copy">Skin to skin, throughout. Your son is most at peace when you are near — so nearness is not the exception here. It is the method.</p>
+
+      <article class="crow" data-step="1">
+        <div class="crow__text">
+          <span class="crow__rule" aria-hidden="true"></span>
+          <span class="crow__no serif">02</span>
+          <h2 class="crow__h display">Held close</h2>
+          <p class="crow__p">Skin to skin, throughout. Your son is most at peace when you are near — so nearness is not the exception here. It is the method.</p>
+        </div>
+        <div class="crow__media">
+          <div class="crow__img crow__img--back"><img src="assets/img/lounge-seated.jpg" alt="Held close" /></div>
+          <div class="crow__img crow__img--front"><img src="assets/img/lounge.jpg" alt="" /></div>
+        </div>
       </article>
-      <article class="jc" data-reveal data-delay="0.2">
-        <div class="jc__img"><img src="assets/img/lounge-dusk.jpg" alt="Home together" /></div>
-        <span class="jc__no">Chapter Three</span>
-        <h3 class="jc__name display">Home together</h3>
-        <p class="jc__copy">The drive home, with your son asleep in the back. By evening the day is already a memory — a gentle one, the way it was always meant to be.</p>
+
+      <article class="crow" data-step="2">
+        <div class="crow__text">
+          <span class="crow__rule" aria-hidden="true"></span>
+          <span class="crow__no serif">03</span>
+          <h2 class="crow__h display">Home together</h2>
+          <p class="crow__p">The drive home, with your son asleep in the back. By evening the day is already a memory — a gentle one, the way it was always meant to be.</p>
+        </div>
+        <div class="crow__media">
+          <div class="crow__img crow__img--back"><img src="assets/img/lounge-dusk.jpg" alt="Home together" /></div>
+          <div class="crow__img crow__img--front"><img src="assets/img/cafe.jpg" alt="" /></div>
+        </div>
       </article>
     </div>
   </section>
@@ -130,60 +179,53 @@
     </div>
   </section>
 
-  <!-- ===== FIVE QUIET PROMISES (carousel) ===== -->
-  <section class="promises" id="promises">
-    <div class="wrap center promises__head">
-      <p class="label label--center label--plain" data-reveal>Substance, plainly said</p>
-      <h2 class="promises__title display" data-split>Five quiet promises.</h2>
+  <!-- ===== FIVE QUIET PROMISES (frosted panels over photo) ===== -->
+  <section class="pillars" id="promises">
+    <div class="pillars__media" data-parallax-scope>
+      <img src="assets/img/lounge-seated.jpg" alt="" data-parallax="0.12" />
+      <div class="pillars__scrim"></div>
     </div>
-
-    <div class="pcar" aria-roledescription="carousel">
-      <div class="pcar__stage">
-        <div class="pcar__images">
-          <div class="pcar__img is-active"><img src="assets/img/lounge-seated.jpg" alt="You stay close" /></div>
-          <div class="pcar__img"><img src="assets/img/treatment.jpg" alt="Comfort comes first" /></div>
-          <div class="pcar__img"><img src="assets/img/procedure.jpg" alt="The moment itself is brief" /></div>
-          <div class="pcar__img"><img src="assets/img/cafe.jpg" alt="You are never left guessing" /></div>
-          <div class="pcar__img"><img src="assets/img/lounge.jpg" alt="A cherished moment" /></div>
-        </div>
-        <button class="pcar__arrow pcar__arrow--prev" aria-label="Previous promise"><span>&#8592;</span></button>
-        <button class="pcar__arrow pcar__arrow--next" aria-label="Next promise"><span>&#8594;</span></button>
-        <span class="pcar__count"><b>01</b> / 05</span>
+    <div class="pillars__inner wrap">
+      <div class="pillars__intro" data-reveal>
+        <p class="label label--plain label-on-dark">Substance, plainly said</p>
+        <p class="pillars__lead">Five quiet promises — the substance beneath the calm, kept whether or not you ever ask about them.</p>
       </div>
-
-      <div class="pcar__viewport">
-        <div class="pcar__track">
-          <article class="pcol">
-            <span class="pcol__no serif">01</span>
-            <h3 class="pcol__h display">You stay close</h3>
-            <p class="pcol__p">Your son is most at peace when you are near — so you hold him, skin to skin, throughout.</p>
-            <a href="#" class="pcol__link">Staying close <span aria-hidden="true">&#8250;</span></a>
-          </article>
-          <article class="pcol">
-            <span class="pcol__no serif">02</span>
-            <h3 class="pcol__h display">Comfort comes first, always</h3>
-            <p class="pcol__p">The gentle anaesthetic is given its full time to take effect. Nothing is rushed for our convenience.</p>
-            <a href="#" class="pcol__link">Comfort &amp; pain relief <span aria-hidden="true">&#8250;</span></a>
-          </article>
-          <article class="pcol">
-            <span class="pcol__no serif">03</span>
-            <h3 class="pcol__h display">The moment itself is brief</h3>
-            <p class="pcol__p">The calm around it is everything. What takes only minutes is surrounded by hours of unhurried care.</p>
-            <a href="#" class="pcol__link">What the day looks like <span aria-hidden="true">&#8250;</span></a>
-          </article>
-          <article class="pcol">
-            <span class="pcol__no serif">04</span>
-            <h3 class="pcol__h display">You are never left guessing</h3>
-            <p class="pcol__p">Clear aftercare you can follow at 3am, and a direct line to our team — a human answers, quickly and kindly.</p>
-            <a href="#" class="pcol__link">The first days at home <span aria-hidden="true">&#8250;</span></a>
-          </article>
-          <article class="pcol">
-            <span class="pcol__no serif">05</span>
-            <h3 class="pcol__h display">A cherished moment, treated as one</h3>
-            <p class="pcol__p">For many families this is a meaningful rite, rich with faith and love. It deserves to be held that way — and it is.</p>
-            <a href="#" class="pcol__link">A cherished rite <span aria-hidden="true">&#8250;</span></a>
-          </article>
-        </div>
+      <div class="pillars__grid">
+        <article class="pillar">
+          <span class="pillar__no serif">(1)</span>
+          <div class="pillar__body">
+            <h3 class="pillar__h display">You stay close</h3>
+            <p class="pillar__p">Your son is most at peace when you are near — so you hold him, skin to skin, throughout.</p>
+          </div>
+        </article>
+        <article class="pillar">
+          <span class="pillar__no serif">(2)</span>
+          <div class="pillar__body">
+            <h3 class="pillar__h display">Comfort comes first</h3>
+            <p class="pillar__p">The gentle anaesthetic is given its full time to take effect. Nothing is rushed for our convenience.</p>
+          </div>
+        </article>
+        <article class="pillar">
+          <span class="pillar__no serif">(3)</span>
+          <div class="pillar__body">
+            <h3 class="pillar__h display">The moment is brief</h3>
+            <p class="pillar__p">The calm around it is everything. What takes only minutes is surrounded by hours of unhurried care.</p>
+          </div>
+        </article>
+        <article class="pillar">
+          <span class="pillar__no serif">(4)</span>
+          <div class="pillar__body">
+            <h3 class="pillar__h display">Never left guessing</h3>
+            <p class="pillar__p">Clear aftercare you can follow at 3am, and a direct line to our team — a human answers, quickly and kindly.</p>
+          </div>
+        </article>
+        <article class="pillar">
+          <span class="pillar__no serif">(5)</span>
+          <div class="pillar__body">
+            <h3 class="pillar__h display">A cherished moment</h3>
+            <p class="pillar__p">For many families this is a meaningful rite, rich with faith and love. It deserves to be held that way — and it is.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -194,44 +236,39 @@
       <div class="std2__media">
         <div class="std2__img std2__img--main" data-img-reveal><img src="assets/img/cafe.jpg" alt="Inside Gentle Procedures, Dubai" /></div>
         <div class="std2__img std2__img--sub" data-reveal><img src="assets/img/consult.jpg" alt="A consultation room" /></div>
-        <span class="std2__cap" data-reveal>Consultant-led · Al Safa, Dubai</span>
       </div>
 
       <div class="std2__content">
-        <p class="label label--plain label-on-dark" data-reveal>The standard, in one breath</p>
+        <p class="label label--plain" data-reveal>The standard, in one breath</p>
         <h2 class="std2__title display" data-split>The people who hold this.</h2>
         <p class="std2__intro" data-reveal>Substance beneath the calm — the four things that make this clinic what it is.</p>
 
-        <ul class="std2__list">
-          <li class="stdi" data-reveal>
-            <span class="stdi__k">Origin</span>
-            <p class="stdi__v">The first international clinic of The Pollock Group.</p>
-          </li>
-          <li class="stdi" data-reveal>
-            <span class="stdi__k">Licence</span>
-            <p class="stdi__v">Licensed by the Dubai Health Authority to its highest day-surgery standard — designed so you would never know it.</p>
-          </li>
-          <li class="stdi" data-reveal>
-            <span class="stdi__k">Method</span>
-            <p class="stdi__v">The peer-reviewed gentle technique, trusted by families on four continents.</p>
-          </li>
-          <li class="stdi" data-reveal>
-            <span class="stdi__k">Care</span>
-            <p class="stdi__v">An internationally trained Consultant Neonatal &amp; Paediatric Surgeon, personally certified in the Pollock Technique by Dr. Pollock.</p>
-          </li>
-        </ul>
-
-        <div class="std2__seal" data-reveal>
-          <span class="std2__seal-mark" aria-hidden="true"></span>
-          <span class="std2__seal-txt">Dubai Health Authority — Licensed</span>
+        <div class="stdcards">
+          <article class="stdcard" data-reveal>
+            <span class="stdcard__k">Origin</span>
+            <p class="stdcard__v">The first international clinic of The Pollock Group.</p>
+          </article>
+          <article class="stdcard" data-reveal data-delay="0.06">
+            <span class="stdcard__k">Licence</span>
+            <p class="stdcard__v">Licensed by the Dubai Health Authority to its highest day-surgery standard — designed so you would never know it.</p>
+          </article>
+          <article class="stdcard" data-reveal data-delay="0.12">
+            <span class="stdcard__k">Method</span>
+            <p class="stdcard__v">The peer-reviewed gentle technique, trusted by families on four continents.</p>
+          </article>
+          <article class="stdcard" data-reveal data-delay="0.18">
+            <span class="stdcard__k">Care</span>
+            <p class="stdcard__v">An internationally trained Consultant Neonatal &amp; Paediatric Surgeon, personally certified in the Pollock Technique by Dr. Pollock.</p>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TESTIMONIAL ===== -->
-  <section class="quote section" id="quote">
-    <div class="wrap center">
+  <!-- ===== TESTIMONIAL (40px image-frame band, cream centre) ===== -->
+  <section class="quote" id="quote">
+    <div class="quote__band" aria-hidden="true"><img src="assets/img/lounge.jpg" alt="" /></div>
+    <div class="quote__mat center">
       <span class="orn" data-reveal></span>
       <blockquote class="quote__q display" data-split>The night before, every parent asks the same quiet question: am I placing my son in the right hands? This is our answer.</blockquote>
       <p class="quote__by label label--center label--plain" data-reveal>One voice · from our family to yours</p>
@@ -258,43 +295,58 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <img class="footer__mark" src="assets/img/logo-ivory.png" alt="Gentle Procedures Dubai" />
-    <h2 class="footer__big display" data-split>A question? We're here.</h2>
-    <div class="footer__actions">
-      <a href="#" class="btn btn--light" data-magnetic="0.2">Speak with our team</a>
-    </div>
-    <div class="footer__rule"></div>
     <div class="footer__cols">
       <div class="footer__col">
-        <h4>Visit</h4>
-        <p>Shop 7, Al Ferdous Building 3,<br/>Al Wasl Road, Al Safa 1,<br/>Dubai, United Arab Emirates</p>
+        <h4>Join the conversation</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+        <a href="#">LinkedIn</a>
       </div>
       <div class="footer__col">
-        <h4>The clinic</h4>
+        <h4>Discover more</h4>
         <a href="#believe">Our Story</a>
-        <a href="#approach">The Gentle Approach</a>
-        <a href="#journey">Your Family's Journey</a>
-        <a href="#standard">The People Who Hold This</a>
+        <a href="#approach">The Approach</a>
+        <a href="#journey">The Day</a>
+        <a href="#promises">The Promises</a>
+        <a href="#standard">The Team</a>
       </div>
       <div class="footer__col">
-        <h4>Contact</h4>
-        <a href="#">Speak with our team</a>
+        <h4>Find out more</h4>
+        <a href="#">The Pollock Group</a>
+        <a href="#">The Gentle Technique</a>
+        <a href="#">Aftercare at Home</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="#">Call the clinic</a>
+        <a href="#">Email us</a>
+        <a href="#">WhatsApp</a>
         <a href="#">العربية ⇄ English</a>
-        <p>A member of The Pollock Group</p>
+      </div>
+      <div class="footer__col footer__signup">
+        <h4>Stay close</h4>
+        <form class="signup" onsubmit="return false">
+          <label class="signup__field"><span>First name</span><input type="text" name="first" autocomplete="given-name" /></label>
+          <label class="signup__field"><span>Last name</span><input type="text" name="last" autocomplete="family-name" /></label>
+          <label class="signup__field"><span>Email address</span><input type="email" name="email" autocomplete="email" /><button type="submit" aria-label="Sign up"><span aria-hidden="true">→</span></button></label>
+        </form>
       </div>
     </div>
     <div class="footer__base">
       <span>© 2026 Gentle Procedures Dubai</span>
-      <span>DHA Licence No. [to confirm]</span>
+      <span>Shop 7, Al Ferdous Building 3, Al Wasl Road, Al Safa 1, Dubai</span>
       <span>Held with care — your family's privacy comes first</span>
     </div>
   </div>
+  <div class="footer__watermark" aria-hidden="true">Gentle Procedures</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="assets/js/concept-a.js"></script>
+<script src="assets/js/site.js"></script>
 <script src="assets/js/common.js"></script>
 </body>
 </html>

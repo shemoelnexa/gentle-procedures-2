@@ -1,0 +1,245 @@
+/* ============================================================
+   GENTLE PROCEDURES — Site stylesheet
+   Centered · symmetric · all-serif · cream / espresso darks / brand teal
+   Fixed chapter-rail nav + full-bleed cinematic "scene" journey
+   ============================================================ */
+
+/* small ornament (thin vertical accent line) */
+.orn,.hero__ornament{display:block;width:1px;height:52px;background:linear-gradient(var(--accent),transparent);margin:0 auto}
+.orn{margin-bottom:2rem}
+.label-on-dark{color:var(--teal-soft)}
+
+/* ---------------- HERO (asymmetric: giant word right, intro bottom-left) ---------------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
+.hero__media{position:absolute;inset:-8% 0 0 0;z-index:0;will-change:transform}
+.hero__media img{width:100%;height:112%;object-fit:cover;object-position:center 40%}
+.hero__scrim{position:absolute;inset:0;background:linear-gradient(115deg,rgba(20,15,9,.66) 0%,rgba(20,15,9,.26) 42%,rgba(20,15,9,.32) 72%,rgba(20,15,9,.5) 100%)}
+.hero__word{position:absolute;z-index:2;right:clamp(20px,5vw,80px);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;align-items:flex-end;text-align:right;max-width:min(72vw,1000px)}
+.hero__title{color:var(--paper-2);font-size:clamp(4.5rem,14vw,13rem);font-weight:200;line-height:.9;letter-spacing:-.02em;text-shadow:0 2px 60px rgba(20,15,9,.4)}
+.hero__eyebrow{margin-top:1.5rem;color:rgba(244,238,224,.82)}
+.hero__intro{position:absolute;z-index:2;left:clamp(20px,5vw,80px);bottom:clamp(52px,11vh,128px);max-width:42ch;
+  font-family:"Canela Text";font-weight:300;font-size:clamp(1rem,1.2vw,1.22rem);line-height:1.55;color:rgba(244,238,224,.92);
+  text-shadow:0 1px 24px rgba(20,15,9,.55)}
+.hero__scroll{position:absolute;left:50%;bottom:3.4vh;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  font-family:"Sohne";font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,238,224,.8)}
+@media (max-width:760px){
+  .hero__word{top:30%;max-width:none;left:clamp(20px,5vw,80px);align-items:flex-start;text-align:left}
+  .hero__title{font-size:clamp(4rem,20vw,7rem)}
+  .hero__intro{max-width:none;right:clamp(20px,5vw,80px)}
+  .hero__scroll{display:none}
+}
+.hero__scroll-line{width:1px;height:46px;background:rgba(244,238,224,.4);position:relative;overflow:hidden}
+.hero__scroll-line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--paper-2);animation:sc 2.4s var(--ease) infinite}
+@keyframes sc{0%{top:-100%}55%,100%{top:100%}}
+
+/* ---------------- MANIFESTO ---------------- */
+.manifesto{background:var(--paper);padding-top:clamp(110px,17vh,220px)}
+
+/* editorial 3-column about — eyebrow + big headline (left) · tall image (centre) · copy (right) */
+.about{display:grid;grid-template-columns:1.05fr .82fr 1fr;gap:clamp(2rem,5vw,5.5rem);align-items:stretch}
+.about__left{display:flex;flex-direction:column;justify-content:space-between;gap:2.5rem}
+.about__eyebrow{align-self:flex-start}
+.about__head{font-size:clamp(2.3rem,4.2vw,4rem);font-weight:200;color:var(--ink);line-height:1.02;letter-spacing:-.01em;max-width:13ch}
+.about__media{overflow:hidden;background:var(--sand)}
+.about__media img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.about__copy{display:flex;flex-direction:column;gap:1.4rem;padding-top:.3rem}
+.about__copy p{font-family:"Canela Text";font-weight:300;font-size:var(--fs-lead);line-height:1.6;color:var(--mocha);max-width:40ch}
+@media (max-width:1000px){
+  .about{grid-template-columns:1fr;gap:clamp(2rem,5vw,3rem);max-width:600px;margin-inline:auto}
+  .about__left{flex-direction:column;gap:1.6rem}
+  .about__media img{aspect-ratio:4/3}
+}
+
+/* editorial scattered figures — big serif numbers, upright unit marks, staggered */
+.figures{position:relative;display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(2.6rem,7vh,6.5rem) 1rem;margin-top:clamp(64px,10vh,140px);
+  padding-top:clamp(48px,6vh,84px);border-top:1px solid var(--line)}
+.fig{display:flex;flex-direction:column;gap:1.1rem}
+.fig__n{display:flex;align-items:flex-start;font-weight:300;color:var(--ink);line-height:.86;
+  font-size:clamp(4rem,10vw,8.5rem)}
+.fig__u{font-family:"Canela";font-weight:300;font-size:.34em;color:var(--teal);
+  margin-left:.16em;margin-top:.28em;letter-spacing:.01em}
+.fig__l{font-family:"Sohne";font-weight:400;font-size:clamp(.86rem,1vw,1rem);letter-spacing:.005em;
+  color:var(--mocha);line-height:1.45;max-width:28ch}
+
+/* scattered placement (mirrors the reference: two small top, big hero lower-left, one lower-centre) */
+.fig--1{grid-column:5/9;grid-row:1;align-self:start}
+.fig--2{grid-column:10/13;grid-row:1;align-self:start}
+.fig--3{grid-column:1/7;grid-row:2}
+.fig--4{grid-column:6/10;grid-row:3}
+
+/* ---------------- CHAPTER (full-bleed) ---------------- */
+.chapter{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding-block:12vh}
+.chapter__media{position:absolute;inset:-10% 0;z-index:0}
+.chapter__media img{width:100%;height:120%;object-fit:cover;object-position:center 50%}
+.chapter__scrim{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,15,9,.5),rgba(20,15,9,.74))}
+.chapter__inner{position:relative;z-index:2;max-width:760px;padding-inline:var(--gutter)}
+.chapter__title{color:var(--paper-2);font-size:clamp(2.6rem,6vw,5.4rem);font-weight:200;margin:1.6rem 0 1.8rem;line-height:1.03}
+.chapter__copy{font-family:"Canela Text";font-weight:300;font-size:var(--fs-lead);line-height:1.6;color:rgba(244,238,224,.86);max-width:52ch;margin:0 auto 2.6rem}
+
+/* interactive tabs (Soneva "Stewardship" reference) — click swaps image + headline + copy + CTA below */
+.chapter--tabs .chapter__media{overflow:hidden}
+.chapter__img{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease)}
+.chapter__img.is-active{opacity:1}
+
+.chapter__nav{position:absolute;top:clamp(44px,9vh,96px);left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;justify-content:center;align-items:baseline;gap:clamp(1.2rem,2.6vw,2.4rem);flex-wrap:nowrap;
+  width:max-content;max-width:92vw}
+.chapter__nav button{flex:none;font-family:"Sohne";font-weight:500;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,238,224,.62);
+  white-space:nowrap;padding-bottom:.6em;border-bottom:1px solid transparent;transition:color .4s var(--ease),border-color .4s var(--ease)}
+.chapter__nav button:hover{color:rgba(244,238,224,.92)}
+.chapter__nav button.is-current{color:var(--paper-2);border-color:rgba(244,238,224,.85)}
+.chapter__panel{will-change:opacity,transform}
+@media (max-width:700px){
+  .chapter__nav{gap:1rem 1.4rem;flex-wrap:wrap;top:clamp(32px,7vh,60px)}
+}
+
+/* ---------------- JOURNEY (split chapters · text left, overlapping images right) ---------------- */
+.chapters{background:var(--paper-2)}
+.chapters__inner{position:relative;max-width:var(--maxw);margin-inline:auto;padding:clamp(60px,9vh,110px) var(--gutter);
+  display:flex;flex-direction:column;gap:clamp(72px,12vh,150px)}
+.chapters__eyebrow{position:absolute;top:clamp(28px,4vh,48px);left:var(--gutter)}
+.chapters__count{position:absolute;top:clamp(28px,4vh,48px);right:var(--gutter);font-family:"Sohne";font-weight:500;
+  font-size:.72rem;letter-spacing:.14em;color:var(--taupe);display:none}
+.chapters__count b{font-family:"Canela";font-weight:300;font-size:1.7em;color:var(--teal);vertical-align:-.05em}
+
+.crow{display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(2rem,5vw,5.5rem);align-items:center}
+.crow__text{position:relative;padding-left:clamp(1.2rem,2vw,2.2rem)}
+.crow__rule{position:absolute;left:0;top:.4em;width:1px;height:2.6em;background:var(--teal)}
+.crow__no{display:block;font-family:"Canela";font-weight:300;font-size:clamp(1.4rem,2vw,2rem);color:var(--teal);margin-bottom:.9rem}
+.crow__h{font-size:clamp(2.6rem,6vw,5.4rem);font-weight:200;color:var(--ink);line-height:1;letter-spacing:-.01em;margin-bottom:1.6rem}
+.crow__p{font-family:"Canela Text";font-weight:300;font-size:var(--fs-lead);line-height:1.6;color:var(--mocha);max-width:42ch}
+
+.crow__media{position:relative;padding-bottom:clamp(30px,5vw,64px)}
+.crow__img{overflow:hidden;background:var(--sand)}
+.crow__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease)}
+.crow:hover .crow__img--back img{transform:scale(1.045)}
+.crow:hover .crow__img--front img{transform:scale(1.06)}
+.crow__img--back{width:84%;margin-left:auto;aspect-ratio:4/3;box-shadow:0 40px 90px -55px rgba(42,33,21,.4)}
+.crow__img--front{position:absolute;left:0;bottom:0;width:44%;aspect-ratio:3/4;border:7px solid var(--paper-2);
+  box-shadow:0 30px 70px -45px rgba(42,33,21,.45)}
+
+/* JS-enhanced: pin the stage; a scrubbed timeline crossfades the chapters seamlessly on scroll.
+   JS drives autoAlpha/translate on .crow__text & .crow__media, so no CSS opacity toggling here. */
+.chapters.is-pinned .chapters__inner{height:100svh;display:block;padding-block:0}
+.chapters.is-pinned .chapters__count{display:block}
+.chapters.is-pinned .crow{position:absolute;left:var(--gutter);right:var(--gutter);top:50%;transform:translateY(-50%)}
+.chapters.is-pinned .crow__text,.chapters.is-pinned .crow__media{will-change:transform,opacity}
+
+@media (max-width:860px){
+  .crow{grid-template-columns:1fr;gap:2rem}
+  .crow__media{max-width:520px;margin-top:1rem}
+}
+
+/* ---------------- FILM ---------------- */
+.film{position:relative;min-height:96svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.film__media{position:absolute;inset:-10% 0;z-index:0}
+.film__media img{width:100%;height:120%;object-fit:cover;object-position:center 55%}
+.film__scrim{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,15,9,.4),rgba(20,15,9,.78))}
+.film__inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.film__title{color:var(--paper-2);font-size:clamp(2.6rem,6.4vw,5.6rem);font-weight:200;margin:1.4rem 0 2.6rem;line-height:1.03}
+.film__play{position:relative;width:clamp(104px,13vw,150px);height:clamp(104px,13vw,150px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--paper-2)}
+.film__play-ring{position:absolute;inset:0;border:1px solid rgba(244,238,224,.44);border-radius:50%;transition:transform .6s var(--ease),border-color .6s}
+.film__play-halo{position:absolute;inset:0;border:1px solid rgba(244,238,224,.5);border-radius:50%;pointer-events:none;transform-origin:center}
+.film__play:hover .film__play-ring{transform:scale(1.08);border-color:var(--paper-2)}
+.film__play-tri{width:0;height:0;border-left:15px solid var(--paper-2);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:5px}
+.film__cap{margin-top:2.2rem;font-family:"Canela Text";font-weight:300;font-size:1.15rem;color:rgba(244,238,224,.82)}
+
+/* ---------------- PROMISES (frosted panels over photo) ---------------- */
+.pillars{position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;padding-block:clamp(90px,13vh,150px)}
+.pillars__media{position:absolute;inset:-8% 0 0 0;z-index:0}
+.pillars__media img{width:100%;height:112%;object-fit:cover;object-position:center 45%}
+.pillars__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,15,9,.42) 0%,rgba(20,15,9,.28) 45%,rgba(20,15,9,.5) 100%)}
+.pillars__inner{position:relative;z-index:2;width:100%}
+.pillars__intro{max-width:40ch;margin:0 0 clamp(2.2rem,5vh,3.6rem) auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:1rem}
+.pillars__lead{font-family:"Canela Text";font-weight:300;font-size:var(--fs-lead);line-height:1.5;color:rgba(244,238,224,.9)}
+.pillars__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(.8rem,1.4vw,1.4rem);align-items:start}
+.pillar{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:2.5rem;
+  min-height:clamp(300px,40vh,420px);padding:clamp(2.4rem,3.4vh,3.4rem) clamp(1.2rem,1.6vw,1.7rem);
+  background:rgba(247,242,232,.9);backdrop-filter:blur(20px) saturate(1.1);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 30px 70px -50px rgba(20,15,9,.5);border-radius:0;
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),background .55s var(--ease)}
+.pillar:nth-child(even){margin-top:clamp(2.5rem,8vh,7rem)}
+.pillar:hover{transform:translateY(-8px);box-shadow:0 48px 92px -46px rgba(20,15,9,.62);background:rgba(250,246,238,.96)}
+.pillar__h,.pillar__no{transition:color .45s var(--ease)}
+.pillar:hover .pillar__no{color:var(--teal-soft)}
+.pillar__no{font-family:"Canela";font-weight:300;font-size:1.1rem;color:var(--teal)}
+.pillar__body{display:flex;flex-direction:column;gap:.9rem}
+.pillar__h{font-size:clamp(1.3rem,1.7vw,1.7rem);font-weight:300;color:var(--ink);line-height:1.08}
+.pillar__p{font-family:"Canela Text";font-weight:300;font-size:.96rem;line-height:1.5;color:var(--mocha)}
+@media (max-width:1000px){
+  .pillars{min-height:0}
+  .pillars__grid{grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2vw,1.6rem)}
+  .pillar{min-height:0}
+  .pillar:nth-child(even){margin-top:0}
+  .pillar:nth-child(4),.pillar:nth-child(5){margin-top:0}
+  .pillars__intro{max-width:none;text-align:left;align-items:flex-start}
+}
+@media (max-width:600px){
+  .pillars__grid{grid-template-columns:1fr}
+}
+
+/* ---------------- STANDARD (light) ---------------- */
+.standard{background:var(--paper-2);color:var(--ink);padding-block:clamp(90px,13vh,180px)}
+.standard__title{font-size:var(--fs-h1);font-weight:200;margin-top:1.6rem;color:var(--ink)}
+/* image-led feature split */
+.std2{display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(2.5rem,6vw,7rem);align-items:center}
+.std2__media{position:relative;padding-bottom:clamp(40px,6vw,72px);padding-right:clamp(30px,4vw,60px)}
+.std2__img{overflow:hidden;background:var(--sand)}
+.std2__img img{width:100%;height:100%;object-fit:cover;display:block}
+.std2__img--main{aspect-ratio:4/5;box-shadow:0 40px 90px -50px rgba(42,33,21,.35)}
+.std2__img--main img{transition:transform 1.4s var(--ease)}
+.std2:hover .std2__img--main img{transform:scale(1.04)}
+.std2__img--sub{position:absolute;right:0;bottom:0;width:46%;aspect-ratio:1/1;border:6px solid var(--paper-2);
+  box-shadow:0 30px 70px -40px rgba(42,33,21,.4)}
+
+.std2__title{font-size:clamp(2.4rem,4.4vw,4rem);font-weight:200;color:var(--ink);line-height:1.02;margin:1.4rem 0 1.4rem}
+.std2__intro{font-family:"Canela Text";font-weight:300;font-size:var(--fs-lead);color:var(--mocha);max-width:40ch;line-height:1.5;margin-bottom:clamp(30px,4vh,48px)}
+/* four cards (replacing the labelled pointer list) */
+.stdcards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.8rem,1.2vw,1.15rem)}
+.stdcard{position:relative;display:flex;flex-direction:column;gap:.85rem;background:var(--paper);
+  border:1px solid var(--line-soft);padding:clamp(1.4rem,1.9vw,1.9rem);overflow:hidden;
+  transition:border-color .5s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease)}
+.stdcard::before{content:"";position:absolute;left:0;top:0;width:2px;height:100%;background:var(--teal);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
+.stdcard:hover{transform:translateY(-3px);box-shadow:0 24px 50px -38px rgba(42,33,21,.4);border-color:var(--line)}
+.stdcard:hover::before{transform:scaleY(1)}
+.stdcard__k{font-family:"Sohne";font-weight:500;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+.stdcard__v{font-family:"Canela Text";font-weight:300;font-size:clamp(1rem,1.25vw,1.16rem);line-height:1.45;color:var(--ink)}
+@media (max-width:520px){.stdcards{grid-template-columns:1fr}}
+
+@media (max-width:900px){
+  .std2{grid-template-columns:1fr;gap:2.6rem}
+  .std2__media{max-width:520px}
+}
+
+/* ---------------- TESTIMONIAL (40px image frame · cream centre) ---------------- */
+.quote{position:relative;overflow:hidden;background:var(--sand)}
+.quote__band{position:absolute;inset:0;z-index:0}
+.quote__band img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.quote__mat{position:relative;z-index:1;margin:40px;background:var(--sand);
+  padding:clamp(64px,13vh,150px) clamp(28px,6vw,90px)}
+.quote__q{font-size:clamp(1.9rem,4vw,3.4rem);font-weight:300;line-height:1.2;color:var(--ink);max-width:30ch;margin:0 auto 2.4rem}
+.quote__by{color:var(--taupe)}
+@media (max-width:600px){.quote__mat{margin:20px}}
+
+/* ---------------- CTA ---------------- */
+.cta{position:relative;min-height:94svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.cta__media{position:absolute;inset:-10% 0;z-index:0}
+.cta__media img{width:100%;height:120%;object-fit:cover;object-position:center 45%}
+.cta__scrim{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,15,9,.42),rgba(20,15,9,.72))}
+.cta__inner{position:relative;z-index:2;max-width:960px;padding-inline:var(--gutter)}
+.cta__title{color:var(--paper-2);font-size:clamp(1.9rem,4vw,3.4rem);font-weight:200;margin:1.6rem auto 2.6rem;line-height:1.08;max-width:22ch}
+.cta__actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:900px){
+  .figures{grid-template-columns:repeat(2,1fr);gap:clamp(2.4rem,6vw,3.6rem) 1.5rem}
+  .fig--1,.fig--2,.fig--3,.fig--4{grid-column:auto;grid-row:auto;align-self:auto}
+}
+@media (max-width:560px){
+  .std2__img--sub{width:52%}
+}
+@media (max-width:520px){
+  .figures{grid-template-columns:1fr;gap:2.6rem}
+}

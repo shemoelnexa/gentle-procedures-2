@@ -78,18 +78,32 @@
 
   function revealLines(el, opts = {}) {
     if (reduced) return;
+    if (el.__revealed) return; // guard: never set up the reveal twice on one element
+    el.__revealed = true;
     const inners = splitLines(el);
-    gsap.set(inners, { yPercent: 112 });
-    gsap.to(inners, {
+    if (!inners.length) return;
+    // y:0 forces GSAP to author the full translate — otherwise it inherits the CSS
+    // `.line-inner{transform:translateY(110%)}` as an additive y baseline and yPercent:0
+    // never actually reaches 0 (lines stay stuck one line-height down, hidden in the mask).
+    gsap.set(inners, { yPercent: 112, y: 0 });
+    const play = () => gsap.to(inners, {
       yPercent: 0,
+      y: 0,
       duration: opts.duration || 1.05,
       ease: 'expo.out',
       stagger: opts.stagger || 0.09,
-      scrollTrigger: opts.trigger === false ? undefined : {
-        trigger: opts.scope || el,
-        start: opts.start || 'top 82%',
-      },
       delay: opts.delay || 0,
+      overwrite: true,
+    });
+    if (opts.trigger === false) { play(); return; }
+    // Fire a fresh, self-contained tween on enter rather than letting ScrollTrigger drive the
+    // tween's progress — a completed fire-and-forget tween can't be reverted by the late
+    // ScrollTrigger.refresh() that fires when webfonts finish loading.
+    ScrollTrigger.create({
+      trigger: opts.scope || el,
+      start: opts.start || 'top 82%',
+      once: true,
+      onEnter: play,
     });
   }
   window.GP.revealLines = revealLines;
@@ -101,12 +115,14 @@
       revealLines(el, { start: 'top 85%' });
     });
     if (reduced) return;
-    // fade-up
+    // fade-up + blur-in (Elyse-style soft resolve)
     gsap.utils.toArray('[data-reveal]').forEach((el) => {
       gsap.to(el, {
-        opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.15, ease: 'power3.out',
         delay: parseFloat(el.dataset.delay || 0),
         scrollTrigger: { trigger: el, start: 'top 88%' },
+        // set 'none' (not '') so it overrides the CSS [data-reveal]{filter:blur} initial rule
+        onComplete: () => { el.style.filter = 'none'; el.style.willChange = 'auto'; },
       });
     });
     // fade only

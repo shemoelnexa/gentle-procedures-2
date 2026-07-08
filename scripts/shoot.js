@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
 });
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const url = process.argv[2] || 'http://127.0.0.1:4173/concept-a.html';
+const url = process.argv[2] || 'http://127.0.0.1:4173/index.html';
 const outDir = process.argv[3] || 'C:\\Users\\Shemoel\\AppData\\Local\\Temp\\claude\\D--Code-Files-gentle-procedures-2\\bc786df6-c883-4b0a-b7d8-276d175a2d16\\scratchpad\\shots';
 const tag = process.argv[4] || 'a';
 const reduced = process.argv[5] !== 'motion'; // default reduced; pass 'motion' for animated

@@ -13,7 +13,7 @@ const OUT = process.argv[2];
   await new Promise(r => server.listen(4173, '127.0.0.1', r));
   const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, args: ['--no-sandbox', '--force-color-profile=srgb', '--hide-scrollbars'], defaultViewport: { width: 390, height: 844, deviceScaleFactor: 2 } });
 
-  for (const page of ['concept-a.html', 'concept-b.html']) {
+  for (const page of ['index.html']) {
     const p = await browser.newPage();
     const errors = [];
     p.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
