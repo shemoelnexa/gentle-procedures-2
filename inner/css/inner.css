@@ -1,0 +1,1291 @@
+/* ============================================================
+   GENTLE PROCEDURES — INNER PAGES
+   Theme AND section vocabulary taken from Figma
+   "Gentle-Procedures-3" · frame 2:2 (the navy/parchment homepage).
+
+   Self-contained, like coming-soon/: no dependency on assets/.
+
+   Design frame = 1904px wide. Sizes are the design value expressed
+   fluidly (value / 1904 * 100 = vw) capped at the design number, so
+   at ~1904px the pages match the frame's own scale 1:1.
+
+   ── THE FRAME'S OWN PATTERNS, and where they live below ──
+   A  .phero      cinematic hero: photo + 4-stop scrim + pills      §6
+   B  .statement  ONE left column: eyebrow, head, lede, prose, pill §8
+   C  .duo        copy | rounded 20px image                         §9
+   D  .figures    giant Canela numerals with navy unit marks        §10
+   E  .filmband   bright full-bleed photo + floating cream card     §11
+   F  .ledger     numbered hairline accordion, light ground         §12
+   G  .nightlist  chevron accordion over photography, dark ground   §13
+   H  .veil       quote over photo, right-aligned cream serif       §14
+   I  .marble     travertine wash + big head + label/value pairs    §15
+   J  .foot       dark photo, 5 cols, image-clipped wordmark        §18
+
+   B is the workhorse. The frame almost never sets a small label in
+   one column against prose in another — so neither do these pages.
+   ============================================================ */
+
+/* ============================================================
+   1 · FOUNDATION
+   ============================================================ */
+
+/* fonts — trial cuts, must be licensed before production */
+@font-face{font-family:"Canela";src:url("../fonts/canela-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Canela Text";src:url("../fonts/canela-text-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-book.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Sohne";src:url("../fonts/sohne-semibold.otf") format("opentype");font-weight:600;font-style:normal;font-display:swap}
+
+:root{
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+/* clip, not hidden: overflow-x:hidden makes body a scroll container, which
+   silently breaks position:sticky for the FAQ question rail. clip does the same
+   visual job without creating one. */
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+h1,h2,h3,h4,h5,p,figure,blockquote,dl,dd{margin:0;font-weight:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+summary::-webkit-details-marker{display:none}
+
+/* reveal initial states — animated by inner.js.
+   Gated on html.js so that with JS off nothing is ever hidden. */
+.js [data-reveal]{opacity:0;transform:translateY(24px);filter:blur(8px);will-change:transform,opacity,filter}
+.js [data-reveal-fade]{opacity:0;will-change:opacity}
+.js [data-reveal-wipe]{clip-path:inset(0 0 100% 0);will-change:clip-path}
+
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.03;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.skip{position:fixed;top:8px;left:8px;z-index:200;padding:10px 16px;background:#1E3A5F;color:#F3ECD8;
+  border-radius:100px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  transform:translateY(-160%);transition:transform .3s var(--ease)}
+.skip:focus{transform:none}
+
+/* ============================================================
+   2 · THEME
+   ============================================================ */
+
+.gp{
+  /* ---- colour ----
+     CLOSED SET. Every value below is taken from the Figma frame, cross-checked
+     against coming-soon/ (the 1:1 build of the same file). Do not add a colour
+     here without finding it in the frame first — the earlier build invented
+     --oak, an #E4D2B4 accent, two extra navies, three extra creams and a whole
+     clay/red family, none of which exist in the design. */
+  --cream:#F3ECD8;          /* the page field, and ivory type on navy */
+  --cream-2:#F7F1E2;        /* lighter band */
+  --cream-3:#F4EEE0;        /* texture fade */
+  --card:#ECE2C8;           /* card bed */
+  --navy:#1E3A5F;           /* primary accent + night register */
+  --navy-2:#1B3A5E;         /* the frame's type navy */
+  --navy-3:#163049;         /* hover / deepest */
+  --teal:#1E4E60;           /* the "yrs" unit mark */
+  --umber:#2A2115;          /* display type on paper */
+  --body:#2D2D2D;           /* reading copy on paper */
+  --mocha:#6E5F4B;          /* captions, meta */
+  --hair:rgba(45,45,45,.24);       /* the frame's row rule */
+  --hair-navy:rgba(30,58,95,.18);  /* the frame's open-row rule */
+  --hair-soft:rgba(42,33,21,.12);
+
+  /* on-navy equivalents */
+  --n-head:#F3ECD8;
+  --n-body:rgba(243,236,216,.8);
+  --n-mute:rgba(243,236,216,.62);
+  --n-hair:rgba(243,236,216,.16);
+  --n-card:rgba(243,236,216,.045);
+
+  /* ---- layout ---- */
+  --edge:clamp(20px,7.46vw,142px);   /* nav + hero inset (142/1904) */
+  --shell:1320px;                    /* body column (1904 − 2×292) */
+  --pad:clamp(20px,4vw,80px);
+  --band:clamp(60px,5.78vw,110px);
+  --band-lg:clamp(84px,7.9vw,150px);
+  /* Reading measure. 30em of Söhne ≈ 71 characters — the frame's own spec
+     (44–68ch in the source) and inside the 65–75 readable band. */
+  --measure:30em;
+  --measure-tight:26em;              /* inset / secondary copy ≈ 61 chars */
+  /* A kicker occupies its own line box plus the gap .statement sets beneath it.
+     A column that doesn't lead with a kicker needs the same drop, or its first
+     line sits beside the kicker instead of the heading it belongs to. */
+  --kicker-drop:calc(var(--fs-eyebrow) * 1.6 + clamp(20px,1.68vw,32px));
+  /* the numbered-list gutter — drives numeral box, row gap and body indent */
+  --gut:clamp(18px,2.02vw,38.4px);
+  --no-w:calc(2.2 * var(--fs-no));
+
+  /* ---- type: the frame's own steps ---- */
+  --fs-eyebrow:clamp(9.6px,.588vw,11.2px);   /* 11.2  .22em */
+  --fs-nav:clamp(10.2px,.588vw,11.2px);
+  --fs-btn:clamp(10.4px,.605vw,11.52px);
+  --fs-no:clamp(10px,.605vw,11.52px);        /* 11.52 ledger numeral, .14em */
+  --fs-d1:clamp(2.55rem,6.05vw,7.2rem);      /* 115.2 hero */
+  --fs-d2:clamp(2.1rem,3.78vw,4.5rem);       /* 72    big statement / marble */
+  --fs-d3:clamp(1.9rem,3.1vw,3.7rem);        /* 59    ledger lead / section head */
+  --fs-d4:clamp(1.6rem,2.1vw,2.5rem);        /* 40    the workhorse head */
+  --fs-d5:clamp(1.35rem,1.764vw,2.1rem);     /* 33.6  ledger row title */
+  --fs-d6:clamp(1.18rem,1.47vw,1.75rem);     /* 28    night-list question */
+  --fs-stat:clamp(2.5rem,3.15vw,3.75rem);    /* 60    numerals — matches the frame */
+  --fs-unit:clamp(1.7rem,2.1vw,2.5rem);      /* 40    the "yrs" unit mark */
+  --fs-lead:clamp(1.05rem,1.09vw,1.3rem);    /* 20.8 */
+  --fs-focus:clamp(1.06rem,1.26vw,1.5rem);   /* 24 */
+  --fs-body:clamp(.98rem,.882vw,1.05rem);    /* 16.8 */
+  --fs-sm:clamp(.86rem,.79vw,.94rem);        /* 15 */
+  --fs-xs:clamp(.78rem,.68vw,.82rem);        /* 13 */
+  --fs-wordmark:clamp(2.2rem,8.74vw,10.4rem);/* 166.4 */
+
+  background:var(--cream);
+  color:var(--body);
+  font-family:"Sohne",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:400;font-size:var(--fs-body);line-height:1.68;
+}
+
+.gp ::selection{background:var(--navy);color:var(--cream)}
+.gp :focus-visible{outline:2px solid var(--navy);outline-offset:3px;border-radius:3px}
+.night :focus-visible{outline-color:var(--cream)}
+
+/* ============================================================
+   3 · PRIMITIVES
+   ============================================================ */
+
+.wrap{width:min(var(--shell),100% - 2*var(--pad));margin-inline:auto}
+.wrap--wide{width:min(1480px,100% - 2*var(--pad))}
+
+/* --- bands --- */
+.band{padding-block:var(--band)}
+.band--lg{padding-block:var(--band-lg)}
+.band--tint{background:var(--cream-3)}
+.band--light{background:var(--cream-2)}
+.band--navy{background:var(--navy);color:var(--n-body)}
+.band--deep{background:var(--navy-3);color:var(--n-body)}
+.band--flush{padding-top:0}
+.band--flush-b{padding-bottom:0}
+
+/* --- eyebrow: 11.2px, .22em, navy --- */
+.eyebrow{display:flex;align-items:center;gap:.9em;
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);line-height:1.6;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--navy)}
+.eyebrow i{font-style:normal;color:var(--mocha);opacity:.7;font-feature-settings:"tnum"}
+.night .eyebrow{color:rgba(243,236,216,.72)}
+.night .eyebrow i{color:rgba(243,236,216,.42)}
+
+/* --- display type --- */
+.serif{font-family:"Canela",Georgia,serif;font-weight:300;color:var(--umber);letter-spacing:-.012em}
+.d1{font-size:var(--fs-d1);line-height:.99;letter-spacing:-.015em}
+.d2{font-size:var(--fs-d2);line-height:1.06;letter-spacing:-.01em}
+.d3{font-size:var(--fs-d3);line-height:1.1;letter-spacing:-.009em}
+.d4{font-size:var(--fs-d4);line-height:1.14;letter-spacing:-.006em}
+.d5{font-size:var(--fs-d5);line-height:1.1;letter-spacing:-.005em}
+.d6{font-size:var(--fs-d6);line-height:1.22;letter-spacing:-.004em}
+.accent{color:var(--navy-2)}
+.night .serif{color:var(--n-head)}
+.night .accent{color:var(--cream)}
+
+/* --- reading copy --- */
+.lead{font-size:var(--fs-lead);line-height:1.6;color:var(--body);max-width:34em}
+.lead--serif{font-family:"Canela",Georgia,serif;font-weight:300;line-height:1.55}
+.focus{font-size:var(--fs-focus);line-height:1.58;color:var(--body);max-width:32em}
+/* p.prose covers the class applied to the paragraph itself — without it those
+   paragraphs inherit no measure and run the full shell width. */
+.prose > p,p.prose{max-width:var(--measure);font-weight:300;line-height:1.68;
+  text-wrap:pretty}
+.prose > p + p{margin-top:1.05em}
+.prose--tight > p,p.prose--tight{max-width:var(--measure-tight)}
+.meta{font-size:var(--fs-xs);line-height:1.7;color:var(--mocha);max-width:var(--measure)}
+.night .lead,.night .focus,.night .prose > p,.night p.prose{color:var(--n-body)}
+.night .meta{color:var(--n-mute)}
+.rule{height:1px;background:var(--hair);border:0;margin:0;opacity:.6}
+.night .rule{background:var(--n-hair);opacity:1}
+
+/* --- buttons: 47px pill, .2em, navy fill is the frame's default --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.83em;
+  min-height:47px;padding:14.6px clamp(22px,1.57vw,29.8px);
+  border:1px solid transparent;border-radius:100px;
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-btn);
+  line-height:1.6;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;
+  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+.btn svg{flex:none;transition:transform .45s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn--navy{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.btn--navy:hover{background:var(--navy-3);border-color:var(--navy-3)}
+.btn--cream{background:var(--cream);border-color:var(--cream);color:var(--navy)}
+.btn--cream:hover{background:var(--navy);border-color:var(--cream);color:var(--cream)}
+.btn--ghost{border-color:rgba(30,58,95,.35);color:var(--navy)}
+.btn--ghost:hover{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.btn--ghostlight{border-color:rgba(243,236,216,.45);color:var(--cream)}
+.btn--ghostlight:hover{background:var(--cream);border-color:var(--cream);color:var(--navy)}
+.btns{display:flex;flex-wrap:wrap;gap:clamp(10px,.84vw,16px)}
+/* a closing group of peer actions, hung from a hairline so it reads as the way
+   out of the page rather than as buttons left over at the bottom of a column */
+.btns--onward{margin-top:clamp(28px,2.4vw,44px);padding-top:clamp(22px,2vw,36px);
+  border-top:1px solid var(--hair-soft)}
+.night .btns--onward{border-top-color:var(--n-hair)}
+/* .btn is nowrap by design, but an onward label can be long enough to overrun a
+   narrow viewport — let these wrap rather than bleed past the shell */
+.btns--onward .btn{max-width:100%}
+@media(max-width:600px){
+  .btns--onward{flex-direction:column;align-items:stretch}
+  .btns--onward .btn{white-space:normal;justify-content:space-between;text-align:left}
+}
+
+/* --- the frame's quiet link: uppercase, arrow, no rule --- */
+.qlink{display:inline-flex;align-items:center;gap:.7em;
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--navy);
+  transition:color .45s var(--ease)}
+.qlink span{transition:transform .45s var(--ease)}
+.qlink:hover span{transform:translateX(5px)}
+.night .qlink{color:var(--cream)}
+/* A single .qlink still closes a copy column all over the set, but a GROUP of
+   destinations is a CTA row and now takes the house pill treatment
+   (.btns.btns--onward) everywhere, so .qlinks / .qlinks--row are gone. */
+
+/* --- figures (images) --- */
+.fig{position:relative;overflow:hidden;border-radius:20px;background:var(--cream-3)}
+.fig img{width:100%;height:100%;object-fit:cover}
+.fig--t{aspect-ratio:4/5}
+.fig--w{aspect-ratio:16/10}
+.fig--s{aspect-ratio:1/1}
+.fig--pano{aspect-ratio:2/1}
+/* A full-bleed band cropped to 3:1 throws away ~40% of a 16/9 photograph and
+   leaves a strip with no subject in it. Hold the crop near 2:1 so the room
+   still reads, and let it deepen on narrow screens rather than pinch further. */
+.bleed{width:100%;overflow:hidden}
+.bleed img{width:100%;aspect-ratio:2/1;height:auto;object-fit:cover;object-position:50% 46%}
+@media(max-width:760px){.bleed img{aspect-ratio:4/3}}
+
+/* ── media duos: the image takes its height from the copy beside it ──
+   A 4/5 crop in a 626px column stands 783px tall — about 2.6x the copy next to
+   it, which reads as an image with a caption rather than as a pair. Stretching
+   the figure across the row keeps the two balanced and lets the crop adapt;
+   the min-height stops very short copy from producing a letterbox sliver. */
+.duo--media{align-items:stretch}
+.duo--media > .fig,.duo--media > .portrait,
+.duo--media > * > .fig:only-child{aspect-ratio:auto;height:100%;
+  min-height:clamp(300px,23vw,420px)}
+@media(max-width:900px){
+  .duo--media > .fig,.duo--media > .portrait,
+  .duo--media > * > .fig:only-child{height:auto;aspect-ratio:16/11;min-height:0}
+}
+
+/* --- card --- */
+.card{background:var(--cream-2);border:1px solid var(--hair-soft);border-radius:20px;
+  padding:clamp(24px,1.9vw,36px)}
+.night .card{background:var(--n-card);border-color:var(--n-hair)}
+
+/* --- the one alarm treatment --- */
+.alarm{max-width:var(--measure);background:var(--card);border-radius:16px;
+  padding:clamp(18px,1.36vw,26px) clamp(20px,1.5vw,30px);color:var(--umber)}
+.alarm b{font-weight:500;color:var(--navy)}
+.night .alarm{background:rgba(243,236,216,.1);color:var(--n-head)}
+.night .alarm b{color:var(--cream)}
+
+/* ============================================================
+   4 · NAV
+   ============================================================ */
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:80;
+  display:flex;align-items:center;gap:2rem;
+  padding:clamp(14px,1.18vw,22.4px) var(--edge);
+  transition:transform .5s var(--ease),background .55s var(--ease),
+    border-color .55s var(--ease),padding .55s var(--ease)}
+.nav::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,25,42,.5),rgba(11,25,42,0));
+  opacity:1;transition:opacity .55s var(--ease)}
+.nav.is-stuck{background:rgba(243,236,216,.93);backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--hair-soft);padding-block:clamp(10px,.74vw,14px)}
+.nav.is-stuck::after{opacity:0}
+.nav.is-hidden{transform:translateY(-102%)}
+
+.nav__logo{flex:none;display:block;line-height:0}
+.nav__logo img{height:clamp(30px,2.42vw,46px);width:auto}
+.nav__logo .on-light{display:none}
+.nav.is-stuck .on-dark{display:none}
+.nav.is-stuck .on-light{display:block}
+
+.nav__links{display:flex;align-items:center;justify-content:center;flex:1;
+  gap:clamp(12px,1.58vw,30px)}
+.nav__link{position:relative;padding:5px 0;white-space:nowrap;
+  font-family:"Sohne",sans-serif;font-weight:400;font-size:var(--fs-nav);line-height:1.6;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cream);
+  transition:color .5s var(--ease)}
+.nav__link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform .5s var(--ease)}
+.nav__link:hover::after,.nav__link[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.nav.is-stuck .nav__link{color:var(--navy)}
+
+.nav__end{flex:none;display:flex;align-items:center;gap:clamp(14px,1.68vw,32px)}
+.nav__lang{display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--fs-nav);letter-spacing:.2em;text-transform:uppercase;color:var(--cream);
+  transition:color .5s var(--ease)}
+.nav.is-stuck .nav__lang{color:var(--navy)}
+.nav__lang svg{width:8px;height:8px;opacity:.7}
+.nav__cta{padding:10px clamp(14px,.91vw,17.3px);border:1px solid rgba(243,236,216,.45);
+  border-radius:100px;font-size:clamp(9.8px,.571vw,10.88px);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cream);display:inline-flex;align-items:center;gap:.6em;
+  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+.nav__cta:hover{background:var(--cream);color:var(--navy)}
+.nav.is-stuck .nav__cta{border-color:rgba(30,58,95,.4);color:var(--navy)}
+.nav.is-stuck .nav__cta:hover{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+
+.nav__burger{display:none;flex:none;width:44px;height:44px;align-items:center;justify-content:center}
+.nav__burger i{display:block;width:20px;height:1px;background:var(--cream);position:relative;
+  transition:background .4s var(--ease)}
+.nav__burger i::before,.nav__burger i::after{content:"";position:absolute;left:0;width:20px;height:1px;
+  background:inherit;transition:transform .4s var(--ease)}
+.nav__burger i::before{top:-6px}
+.nav__burger i::after{top:6px}
+.nav.is-stuck .nav__burger i{background:var(--navy)}
+.nav.is-open .nav__burger i{background:transparent}
+.nav.is-open .nav__burger i::before{transform:translateY(6px) rotate(45deg);background:var(--navy)}
+.nav.is-open .nav__burger i::after{transform:translateY(-6px) rotate(-45deg);background:var(--navy)}
+
+@media(max-width:1180px){
+  .nav__burger{display:flex}
+  .nav__links{position:fixed;inset:0 0 auto;top:0;padding:96px var(--edge) 40px;
+    flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:2px;
+    background:var(--cream);border-bottom:1px solid var(--hair-soft);
+    clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease);
+    max-height:100svh;overflow-y:auto}
+  .nav.is-open .nav__links{clip-path:inset(0 0 0 0)}
+  .nav__links .nav__link{color:var(--navy);font-family:"Canela",Georgia,serif;font-weight:300;
+    font-size:clamp(1.4rem,4.6vw,2rem);letter-spacing:-.01em;text-transform:none;
+    padding:9px 0;line-height:1.25}
+  .nav__links .nav__link::after{display:none}
+  .nav__cta{display:none}
+}
+
+/* ============================================================
+   5 · CRUMB + ONWARD
+   ============================================================ */
+
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:.7em;
+  padding-block:clamp(20px,1.5vw,28px);
+  font-size:var(--fs-xs);letter-spacing:.13em;text-transform:uppercase;color:var(--mocha)}
+.crumb a{transition:color .4s var(--ease)}
+.crumb a:hover{color:var(--navy)}
+.crumb em{font-style:normal;color:var(--navy)}
+.crumb i{font-style:normal;opacity:.4}
+.night .crumb{color:var(--n-mute)}
+.night .crumb em{color:var(--cream)}
+
+/* ============================================================
+   6 · A — CINEMATIC HERO
+   ============================================================ */
+
+.phero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;
+  min-height:clamp(480px,44vw,760px)}
+.phero--tall{min-height:clamp(560px,52vw,900px)}
+.phero__media{position:absolute;inset:0;z-index:-2}
+.phero__media img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.phero__scrim{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(99.5deg,rgba(22,48,79,.52) 4%,rgba(22,48,79,.2) 35%,rgba(22,48,79,0) 58%),
+  linear-gradient(180deg,rgba(0,0,0,.44) 0%,rgba(0,0,0,.12) 32%,rgba(30,58,95,.36) 56%,rgba(30,58,95,.92) 100%)}
+.phero__inner{position:relative;width:100%;padding:0 var(--edge) clamp(48px,4.7vw,90px)}
+.phero .eyebrow{color:var(--cream);text-shadow:0 1px 14px rgba(18,30,48,.6)}
+.phero .eyebrow i{color:rgba(243,236,216,.72)}
+.phero__title{color:var(--cream);max-width:20ch;margin-top:clamp(18px,1.5vw,28px)}
+.phero__title .accent{color:var(--cream)}
+.phero__sub{margin-top:clamp(16px,1.26vw,24px);color:rgba(243,236,216,.88);max-width:var(--measure)}
+.phero__note{margin-top:clamp(12px,.84vw,16px);color:rgba(243,236,216,.66);
+  max-width:var(--measure);font-size:var(--fs-sm)}
+.phero__cta{margin-top:clamp(26px,1.99vw,38px)}
+
+/* a hero with no photograph — where imagery is deliberately withheld */
+.phero--held{background:var(--navy);min-height:clamp(420px,38vw,640px)}
+.phero--held .phero__scrim{background:
+  radial-gradient(120% 90% at 12% 100%,rgba(196,184,150,.16),transparent 60%),
+  linear-gradient(180deg,rgba(11,25,42,.5),rgba(30,58,95,0) 50%)}
+
+.cue{position:absolute;right:var(--edge);bottom:clamp(44px,4.4vw,84px);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  font-size:9.6px;letter-spacing:.28em;text-transform:uppercase;color:rgba(243,236,216,.8)}
+.cue i{display:block;width:1px;height:46px;background:rgba(243,236,216,.34);
+  overflow:hidden;position:relative}
+.cue i::after{content:"";position:absolute;inset:0;background:var(--cream);
+  animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+@media(max-width:900px){.cue{display:none}}
+
+/* ============================================================
+   7 · PAPER GROUNDS
+   The frame lays a travertine wash under its statement bands.
+   Used sparingly — it is a punctuation mark, not a default.
+   ============================================================ */
+
+.band--paper{position:relative;isolation:isolate}
+.band--paper::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:url("../img/texture.png") center/cover no-repeat;
+  opacity:.5;mix-blend-mode:soft-light}
+
+/* ============================================================
+   8 · B — STATEMENT  (the workhorse)
+   eyebrow · Canela head · Söhne lede · paragraph · navy pill,
+   all in ONE left column at the frame's 46em measure.
+   ============================================================ */
+
+.statement{max-width:52em}
+.statement > * + *{margin-top:clamp(18px,1.47vw,28px)}
+.statement .eyebrow + *{margin-top:clamp(20px,1.68vw,32px)}
+.statement__h{font-family:"Canela",Georgia,serif;font-weight:300;color:var(--umber);
+  font-size:var(--fs-d4);line-height:1.14;letter-spacing:-.006em;max-width:24ch;
+  text-wrap:balance}
+.statement__h--big{font-size:var(--fs-d3);line-height:1.08;max-width:20ch}
+.statement__h--huge{font-size:var(--fs-d2);line-height:1.06;max-width:17ch}
+.statement__lede{font-size:var(--fs-focus);line-height:1.5;color:var(--body);max-width:30em}
+.statement .btn{margin-top:clamp(24px,2.1vw,40px)}
+.statement--centre{margin-inline:auto;text-align:center;max-width:44em}
+.statement--centre .statement__h,.statement--centre .statement__lede,
+.statement--centre .prose > p{margin-inline:auto}
+.night .statement__h{color:var(--n-head)}
+.night .statement__lede{color:var(--n-body)}
+
+/* ============================================================
+   9 · C — DUO  (copy | rounded image)
+   ============================================================ */
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4.7vw,90px);align-items:center}
+.duo--top{align-items:start}
+.duo--wide{grid-template-columns:.86fr 1.14fr}
+.duo--narrow{grid-template-columns:1.14fr .86fr}
+.duo--flip > *:first-child{order:2}
+/* The copy column is exactly one measure wide, so it fills its cell and hangs
+   from the shell's right edge. Without this the text stops ~240px short inside
+   a fractional column and the block aligns with nothing, while the heading and
+   any row beneath it are both flush. */
+.duo--copy{grid-template-columns:1fr var(--measure)}
+/* …and where the left column leads with a kicker and the copy does not, the
+   copy also drops so its first line meets the heading, not the kicker.
+   Only meaningful with duo--top; a centred duo needs duo--copy alone. */
+.duo--kicker{grid-template-columns:1fr var(--measure)}
+.duo--kicker > *:nth-child(2){padding-top:var(--kicker-drop)}
+@media(max-width:900px){
+  .duo,.duo--wide,.duo--narrow,.duo--copy,.duo--kicker{grid-template-columns:1fr}
+  .duo--flip > *:first-child{order:0}
+  .duo--kicker > *:nth-child(2){padding-top:0}
+}
+
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,2.5vw,48px)}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.37vw,26px)}
+@media(max-width:900px){.trio{grid-template-columns:1fr}.quad{grid-template-columns:repeat(2,1fr)}}
+
+/* ============================================================
+   10 · D — FIGURES  (giant Canela numerals, navy unit marks)
+   ============================================================ */
+
+/* Spread rather than an even 4-col grid — the same optical spacing as the
+   coming-soon frame, so the numerals sit on the full measure with each
+   caption centred under its own figure. */
+.figures{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem}
+/* Spread works for three or four. Two figures pushed to the extremes of a
+   1320px shell is not a spread, it is a hole — the eye reads a broken row.
+   A pair is a lockup instead: centred, and hung from the same hairline the
+   other closing rows on these pages hang from. */
+.figures--pair{justify-content:center;gap:clamp(40px,8.4vw,160px);
+  border-top:1px solid var(--hair);padding-top:clamp(30px,2.6vw,52px)}
+.night .figures--pair{border-top-color:var(--n-hair)}
+/* a spread of three or four that shares a band with copy above it, rather than
+   floating in a band of its own — hung from the same hairline as everything
+   else on these pages, so it reads as the tally of what was just said */
+.figures--rule{margin-top:clamp(46px,4vw,76px);
+  border-top:1px solid var(--hair);padding-top:clamp(30px,2.6vw,52px)}
+.night .figures--rule{border-top-color:var(--n-hair)}
+.figure{display:flex;flex-direction:column;align-items:center;text-align:center;flex:0 1 auto}
+.figure b{display:flex;align-items:baseline;gap:5px;
+  font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-stat);
+  line-height:1;letter-spacing:-.012em;color:var(--umber);font-feature-settings:"tnum"}
+/* suffix (k+) stays at full numeral size in navy; unit (yrs) steps down, in teal */
+.figure__suffix{font-style:normal;color:var(--navy-2)}
+.figure__unit{font-style:normal;font-size:var(--fs-unit);letter-spacing:.0116em;color:var(--teal)}
+.figure span{margin-top:clamp(8px,.63vw,12px);font-size:var(--fs-sm);
+  line-height:1.45;letter-spacing:.005em;color:var(--mocha)}
+.night .figure b{color:var(--n-head)}
+.night .figure__suffix,.night .figure__unit{color:var(--cream)}
+.night .figure span{color:var(--n-mute)}
+@media(max-width:760px){
+  .figures{justify-content:flex-start;gap:clamp(28px,5vw,44px) clamp(32px,8vw,64px)}
+  .figure{flex:0 0 calc(50% - clamp(16px,4vw,32px));align-items:flex-start;text-align:left}
+}
+
+/* The fee is the same numeral lockup the frame uses for 30 yrs / 100 k+ —
+   Canela figure in umber, unit mark in navy at ~.26 scale, top-aligned,
+   with a Söhne caption beneath — taken to the top of its range. */
+/* The fee gets its own moment rather than sharing the first screen with the
+   heading. 181px beside a headline reads as a hard sell; alone, with air above
+   and the three reassurances below, the same number reads as confidence. */
+.fee{display:flex;flex-direction:column;align-items:flex-start;
+  margin-top:clamp(56px,5.4vw,104px)}
+.fee__no{display:flex;align-items:flex-start;gap:.1em;
+  font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(3.4rem,8.4vw,10rem);line-height:.94;letter-spacing:-.024em;
+  color:var(--umber);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+  /* the comma drops below the line box — leave it room */
+  padding-bottom:.09em}
+.fee__no em{flex:none;font-style:normal;font-size:.26em;color:var(--navy-2);
+  letter-spacing:.01em;padding-top:.5em}
+.fee__cap{display:flex;align-items:center;gap:clamp(14px,1.26vw,24px);
+  margin-top:clamp(18px,1.6vw,30px);
+  font-size:var(--fs-eyebrow);letter-spacing:.22em;text-transform:uppercase;color:var(--navy)}
+.fee__cap i{flex:none;width:clamp(48px,6.3vw,120px);height:1px;background:var(--hair);
+  font-style:normal}
+
+/* On the axis. Once the headline moves up into the page's hero, the fee is the
+   whole subject of the band beneath it — and left-hung it left two thirds of a
+   1320px shell as an empty field. The number is the thing, so it sits on the
+   centre line with the three reassurances ranged beneath it. The only centred
+   moment in the set, which is what makes it read as deliberate. */
+.fee--centre{align-items:center;text-align:center;margin:0 auto}
+/* the caption's single left-hand rule is a hang mark; on the axis it needs its
+   mirror or the lockup leans */
+.fee--centre .fee__cap::after{content:"";flex:none;
+  width:clamp(48px,6.3vw,120px);height:1px;background:var(--hair)}
+.pairs--centre{justify-items:center;text-align:center}
+.pairs--centre .pair dd{margin-inline:auto}
+@media(max-width:760px){
+  .fee--centre{align-items:flex-start;text-align:left}
+  .fee--centre .fee__cap::after{display:none}  /* left-hung again: one hang mark */
+  .pairs--centre{justify-items:start;text-align:left}
+}
+
+/* ============================================================
+   11 · E — FILM BAND  (bright full-bleed photo + cream card)
+   ============================================================ */
+
+.filmband{position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(320px,39.9vw,760px);display:flex;align-items:flex-end}
+.filmband > img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover}
+.filmcard{position:relative;margin:0 0 clamp(24px,2.5vw,48px) clamp(20px,2.3vw,44px);
+  background:var(--cream);border-radius:20px;
+  padding:clamp(20px,1.68vw,32px) clamp(22px,1.89vw,36px);
+  width:min(420px,calc(100% - 2*clamp(20px,2.3vw,44px)));
+  box-shadow:0 24px 60px -34px rgba(20,32,48,.4)}
+.filmcard__line{margin-top:clamp(12px,1.05vw,20px);
+  font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-focus);
+  line-height:1.3;color:var(--umber)}
+.filmcard__row{display:flex;align-items:center;justify-content:space-between;gap:1em;
+  margin-top:clamp(16px,1.26vw,24px)}
+.filmcard__play{display:inline-flex;align-items:center;gap:.9em;
+  font-size:var(--fs-eyebrow);letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
+.filmcard__play i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);
+  display:grid;place-items:center;transition:transform .45s var(--ease)}
+.filmcard__play i svg{width:11px;height:11px;color:var(--cream);margin-left:1px}
+.filmcard__play:hover i{transform:scale(1.08)}
+.filmcard__mute{flex:none;width:30px;height:30px;border-radius:50%;
+  border:1px solid rgba(30,58,95,.3);display:grid;place-items:center;color:var(--navy)}
+.filmcard__mute svg{width:12px;height:12px}
+@media(max-width:600px){.filmcard{width:calc(100% - 2*clamp(20px,2.3vw,44px))}}
+
+/* ============================================================
+   12 · F — LEDGER  (numbered hairline accordion, light ground)
+   The frame: row rule rgba(45,45,45,.2), 41/40px padding,
+   38.4px gap, Söhne 11.52px/.14em numeral, Canela 33.6px title.
+   Open row: navy type + rgba(30,58,95,.18) rules + 20px to body.
+   ============================================================ */
+
+/* One gutter definition drives the numeral box, the row gap and the body
+   indent, so the title and its paragraphs sit on exactly the same axis.
+   (Computed from --fs-no, not the body size — that mismatch is a ~6px drift.) */
+.ledger{border-top:1px solid var(--hair)}
+.ledger__row{border-bottom:1px solid var(--hair);transition:border-color .5s var(--ease)}
+.ledger__row summary,.ledger__head{list-style:none;cursor:pointer;
+  display:flex;align-items:center;gap:var(--gut);
+  padding:clamp(24px,2.15vw,41px) 0}
+/* Fixed box + tabular figures, so every title in a list starts on the same
+   axis. With proportional figures "01" and "11" differ by ~5px and the
+   column visibly wobbles down a long list. */
+.ledger__no{flex:none;min-width:var(--no-w);
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-no);
+  letter-spacing:.14em;color:var(--body);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+  transition:color .5s var(--ease)}
+.ledger__t{font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-d5);
+  line-height:1.1;letter-spacing:-.005em;color:var(--body);transition:color .5s var(--ease)}
+.ledger__row:hover .ledger__no,.ledger__row:hover .ledger__t{color:var(--navy-2)}
+.ledger__row[open]{border-color:var(--hair-navy)}
+.ledger__row[open] + .ledger__row{border-top:0}
+.ledger__row[open] summary{align-items:flex-start;padding-bottom:clamp(12px,1.05vw,20px)}
+.ledger__row[open] .ledger__no{color:var(--navy-2);font-weight:600}
+.ledger__row[open] .ledger__t{color:var(--navy-2)}
+/* the frame indents the body to the title, not to the numeral */
+.ledger__b{padding:0 0 clamp(24px,2.15vw,41px) calc(var(--gut) + var(--no-w))}
+.ledger__b > p{max-width:var(--measure);font-weight:300;line-height:1.68}
+.ledger__b > p + p{margin-top:1em}
+.ledger__b .alarm{max-width:var(--measure)}
+
+/* A row that is permanently open — the answers that are never collapsed.
+   Same geometry as an [open] row, so it aligns with every other row and
+   with the section heading above it. */
+.ledger__row--open{border-color:var(--hair-navy)}
+.ledger__row--open .ledger__head{align-items:flex-start;cursor:default;
+  padding-bottom:clamp(12px,1.05vw,20px)}
+.ledger__row--open .ledger__no{color:var(--navy-2);font-weight:600}
+.ledger__row--open .ledger__t{color:var(--navy-2);max-width:34ch}
+.ledger--night .ledger__row--open{border-color:var(--n-hair)}
+.ledger--night .ledger__row--open .ledger__no,
+.ledger--night .ledger__row--open .ledger__t{color:var(--cream)}
+
+/* a ledger that only lists — no disclosure (What's Included) */
+.ledger--plain .ledger__head{cursor:default;align-items:baseline}
+.ledger--plain .ledger__t{font-size:clamp(1.05rem,1.16vw,1.38rem);line-height:1.45;
+  color:var(--umber);max-width:44em}
+.ledger--plain .ledger__head{padding-block:clamp(15px,1.16vw,22px)}
+.ledger--plain .ledger__row:hover .ledger__no,
+.ledger--plain .ledger__row:hover .ledger__t{color:inherit}
+
+/* movement heading between ledger groups */
+.movement{display:flex;align-items:baseline;gap:1em;
+  margin:clamp(40px,3.7vw,70px) 0 clamp(6px,.5vw,10px);
+  font-size:var(--fs-eyebrow);letter-spacing:.22em;text-transform:uppercase;color:var(--navy)}
+.movement:first-child{margin-top:0}
+.movement i{flex:1;height:1px;background:var(--hair);opacity:.5;font-style:normal}
+.night .movement{color:var(--cream)}
+.night .movement i{background:var(--n-hair);opacity:1}
+
+/* ============================================================
+   17 · THE INVENTORY  (What's Included)
+   The approved note is explicit: "one continuous inventory in four movements.
+   No icons, no cards, no three-column grid. Just the list, and then the fee."
+
+   ⚠️ The first build read CONTINUOUS as a property of the sentences and ran
+   each movement as one paragraph of Canela with the numerals set inline at
+   .46em. It was continuous and it could not be READ — which is the only thing
+   a family opens this page to do: find the line they care about. "The discharge
+   pack: everything you'll need — and a few small extras from us." dissolved
+   into its neighbours, and four identical head/count/blob bands hung against
+   the left of a 1320px shell left the right half of four screens empty.
+
+   Continuous is now a property of the COMPOSITION: ONE band, one travelling
+   index (.invrail — the same sticky idiom as the FAQ's .qgrid--head, so the
+   left column is never an empty field), and four movement marks. The lines are
+   discrete again, each hung off a tabular numeral with NO rule of its own —
+   four hairlines on the page instead of twenty-one, which marks movements
+   instead of tabulating rows. The count still runs 01–21 unbroken.
+   ============================================================ */
+
+/* .82fr 1.18fr is .qgrid--head's own proportion — the split already approved
+   for "a section whose left column carries the head", and it lands the right
+   column's lines at 58ch (1904) / 77ch (1440) with no cap needed. */
+.inv{display:grid;grid-template-columns:.82fr 1.18fr;
+  gap:clamp(30px,4.7vw,90px);align-items:start}
+/* the padding matches .mvt's, so the rail's first line sits on the same cap
+   line as the first movement's numeral across the gap */
+.invrail{position:sticky;top:calc(clamp(88px,7.4vw,132px) + var(--strip-h,0px));
+  padding-top:clamp(18px,1.5vw,28px)}
+.invrail .eyebrow{margin-bottom:clamp(16px,1.3vw,24px)}
+/* .eyebrow i is .7 of mocha — 2.9:1, which is fine as a decorative index on a
+   photographic hero and not fine as the tally of the page you are reading */
+.invrail .eyebrow i{opacity:1}
+/* The index takes .qrail's hairline / opacity / is-current mechanics (§19) but
+   not its type. The FAQ rail is twenty categories in a 290px column beside body
+   copy; this is FOUR destinations in a 500px column that has to hold its own
+   against 28px display type — at 15px Söhne it read as a caption someone had
+   left behind. Set as what it actually is: the contents page of the inventory.
+   Inactive sits at .66, not .qrail's .55 — .55 of umber on cream is 3.3:1 and
+   this is 18px text, so it has to clear 4.5:1 (this is 4.8:1).
+   ⚠️ Scoped to .invidx, NOT to .invrail a — the rail also holds a .btn, and the
+   unscoped selector gave the pill a flex row, a hairline and .66 opacity. */
+.invidx a{align-items:baseline;padding-block:clamp(13px,1.16vw,20px);
+  font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:var(--fs-focus);line-height:1.24;letter-spacing:-.004em;
+  color:var(--umber);opacity:.66}
+.invidx a b{padding-top:0;color:var(--navy)}
+.invidx a span{flex:1}
+.invrail .btn{margin-top:clamp(24px,2.1vw,38px)}
+
+/* a movement mark: the only rules in the composition */
+.mvt{border-top:1px solid var(--hair);padding-top:clamp(18px,1.5vw,28px);
+  margin-top:clamp(46px,4.2vw,80px)}
+.mvt:first-child{margin-top:0}
+.mvt__no{font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-no);
+  letter-spacing:.14em;color:var(--navy);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.mvt__name{margin-top:clamp(10px,.84vw,16px);
+  font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-d4);
+  line-height:1.1;letter-spacing:-.008em;color:var(--umber);text-wrap:balance}
+.night .mvt{border-top-color:var(--n-hair)}
+.night .mvt__no{color:var(--cream)}
+.night .mvt__name{color:var(--n-head)}
+
+/* The lines. The hanging tabular numeral IS the spine, so the row needs no
+   rule — and without twenty-one rules the list stops reading as a table.
+   Still an <ol>: counter-reset picks up where the previous movement stopped,
+   so the count cannot drift across four separate lists.
+   --stack-fs drives both the type and the numeral's optical drop, so the
+   large variant only has to change one value.
+   The gutter is its own token, NOT --gut: the ledger's 38.4px is tuned for a
+   33.6px title with a paragraph indented under it, and beside a single display
+   line it strands the numeral in a column of its own — 37px of air between
+   "01" and the word it counts. */
+.stack{--stack-fs:var(--fs-d6);--stack-gut:clamp(13px,1.26vw,24px);
+  counter-reset:item var(--from,0);margin-top:clamp(24px,2.1vw,40px)}
+.stack > li{display:grid;grid-template-columns:var(--no-w) 1fr;gap:var(--stack-gut);
+  padding-block:clamp(11px,1.05vw,20px);
+  font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:var(--stack-fs);line-height:1.34;letter-spacing:-.004em;
+  color:var(--umber);text-wrap:pretty}
+.stack > li:first-child{padding-top:0}
+.stack > li:last-child{padding-bottom:0}
+/* Söhne 11.52px beside Canela 28px: drop the numeral to the first line's CAP,
+   not to its baseline — a baseline match sits the small figure visibly low. */
+.stack > li::before{counter-increment:item;
+  content:counter(item,decimal-leading-zero);
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-no);
+  line-height:1;letter-spacing:.14em;color:var(--navy);opacity:.8;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+  padding-top:calc(var(--stack-fs) * .34);
+  transition:opacity .45s var(--ease)}
+/* the numeral lifts under the cursor — opacity only. A translate is this site's
+   LINK gesture (.btn svg, .qlink span), and a line of the inventory is not one. */
+.stack > li:hover::before{opacity:1}
+.night .stack > li{color:var(--n-head)}
+/* .8 / .72 rather than the .5 this started at: a 10px numeral is small text, so
+   it has to clear 4.5:1 — navy at .5 on cream is 2.9:1 (this is 5.4:1 / 5.9:1) */
+.night .stack > li::before{color:var(--cream);opacity:.72}
+
+/* the closing trio are standing commitments, not events — so they take the
+   night register a full step up, and hang from the same hairline as their head */
+.stack--lg{--stack-fs:var(--fs-d4);margin-top:0;
+  border-top:1px solid var(--hair);padding-top:clamp(18px,1.5vw,28px)}
+.stack--lg > li{padding-block:clamp(14px,1.26vw,24px)}
+.night .stack--lg{border-top-color:var(--n-hair)}
+
+@media(max-width:900px){
+  .inv{grid-template-columns:1fr}
+  .invrail{position:static;margin-bottom:clamp(32px,4.2vw,56px)}
+}
+
+/* dark variant of the ledger, for navy grounds */
+.ledger--night{border-top-color:var(--n-hair)}
+.ledger--night .ledger__row{border-bottom-color:var(--n-hair)}
+.ledger--night .ledger__no{color:var(--n-mute)}
+.ledger--night .ledger__t{color:var(--n-head)}
+.ledger--night .ledger__row:hover .ledger__no,
+.ledger--night .ledger__row:hover .ledger__t{color:var(--cream)}
+.ledger--night .ledger__row[open]{border-color:var(--n-hair)}
+.ledger--night .ledger__row[open] .ledger__no,
+.ledger--night .ledger__row[open] .ledger__t{color:#fff}
+.ledger--night .ledger__b > p{color:var(--n-body)}
+
+/* ============================================================
+   13 · G — NIGHT LIST  (chevron accordion over photography)
+   The frame: no rules, cream Canela questions with a chevron at
+   the left, answer in small cream Söhne, "VIEW MORE →" beneath.
+   ============================================================ */
+
+/* overflow:hidden on the SECTION would clip the photograph, but it also creates
+   a clipping context — which silently kills position:sticky for the question
+   rail inside it. Clip the media layer instead; the rail then travels. */
+.nightband{position:relative;isolation:isolate;background:var(--navy)}
+.nightband__media{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.nightband__media img{width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+/* The scrim used to fall to .2 alpha at 30% down the band — a bright window in
+   the veil that landed exactly where the question rows sit, so the photograph
+   showed through behind two or three of them as a pale grey rectangle and read
+   as an accidental hover state. Every stop is now within .13 of its neighbours:
+   the photograph is still present, but it never opens a hole under the copy. */
+.nightband__scrim{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(96deg,rgba(24,36,52,.82) 0%,rgba(28,42,60,.66) 38%,rgba(28,42,60,.6) 62%,rgba(24,38,56,.74) 100%),
+  linear-gradient(180deg,rgba(18,30,46,.5) 0%,rgba(18,30,46,.4) 34%,rgba(20,34,52,.68) 100%)}
+
+/* A very long band cannot be covered by one photograph without blowing it
+   up. So the photograph holds the top of the band and resolves into flat
+   navy — which is the register turning, made literal. */
+/* The photograph holds the top of a long band and resolves into flat navy — but
+   it was ending on a hard horizontal edge, because the scrim is only ~72% opaque
+   at that point, so ~28% of photo simply stopped. Fade the image out on its own
+   bottom edge and the step disappears whatever the scrim is doing. */
+.nightband--long{--photo-h:clamp(460px,48vw,920px)}
+.nightband--long .nightband__media{height:var(--photo-h);bottom:auto;
+  -webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 58%,transparent 100%)}
+.nightband--long .nightband__media img{object-position:50% 26%}
+/* The scrim must be tied to the PHOTOGRAPH's height, not the section's. As an
+   inset:0 layer its 180deg stops resolved against a band thousands of pixels
+   tall, so the "resolves into navy" stop landed far below the picture and the
+   flat navy underneath drifted instead of sitting still. Same height as the
+   media, ending on opaque --navy, and the section's own navy takes over with
+   nothing to see at the join. */
+/* Order matters here, and it is the reverse of the base scrim's. The vertical
+   pass is the one that resolves to opaque --navy, so it has to sit ON TOP: put
+   the side vignette above it and that vignette keeps darkening the last row of
+   pixels, leaving the band's own navy visibly lighter at the join. */
+.nightband--long .nightband__scrim{bottom:auto;height:var(--photo-h);background:
+  linear-gradient(180deg,rgba(18,30,46,.5) 0%,rgba(18,30,46,.42) 30%,rgba(30,58,95,.9) 86%,var(--navy) 100%),
+  linear-gradient(96deg,rgba(24,36,52,.82) 0%,rgba(28,42,60,.66) 40%,rgba(24,38,56,.74) 100%)}
+
+.nightlist{margin-top:clamp(26px,2.4vw,46px)}
+.nightlist__row{border:0}
+.nightlist__row summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;
+  gap:clamp(14px,1.26vw,24px);padding:clamp(13px,1.16vw,22px) 0}
+.nightlist__chev{flex:none;width:14px;height:14px;margin-top:.45em;color:rgba(243,236,216,.7);
+  transition:transform .45s var(--ease),color .45s var(--ease)}
+.nightlist__row[open] .nightlist__chev{transform:rotate(180deg);color:var(--cream)}
+.nightlist__t{font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-d6);
+  line-height:1.24;letter-spacing:-.004em;color:var(--n-head);max-width:34ch;
+  transition:color .4s var(--ease),transform .45s var(--ease)}
+/* The question is already cream, so there is no colour left to brighten it
+   with inside the closed set — and #fff is outside it. The affordance is the
+   house one instead: the mark moves. Same gesture as .btn and .qlink. */
+.nightlist__row:not([open]):hover .nightlist__chev{color:var(--cream);transform:translateY(2px)}
+.nightlist__row:hover .nightlist__t{transform:translateX(4px)}
+.nightlist__b{padding:0 0 clamp(20px,1.68vw,32px) calc(clamp(14px,1.26vw,24px) + 14px)}
+.nightlist__b > p{max-width:var(--measure);font-size:var(--fs-sm);font-weight:300;line-height:1.72;
+  color:var(--n-body)}
+.nightlist__b > p + p{margin-top:.9em}
+.nightband .qlink{margin-top:clamp(22px,1.9vw,36px)}
+
+/* ============================================================
+   14 · H — VEIL  (quote over photography, right-aligned)
+   ============================================================ */
+
+.veil{position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(340px,34.9vw,664px);display:flex;align-items:center}
+.veil > img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;
+  object-position:30% 40%}
+.veil__wash{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(90deg,rgba(38,54,78,0) 0%,rgba(36,52,76,.26) 26%,
+    rgba(32,48,72,.5) 52%,rgba(28,44,68,.6) 74%,rgba(24,40,62,.68) 100%)}
+.veil__inner{width:min(var(--shell),100% - 2*var(--pad));margin-inline:auto;
+  display:flex;flex-direction:column;align-items:flex-end;text-align:right;
+  gap:clamp(18px,1.68vw,32px)}
+.veil blockquote{font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1.35rem,2.42vw,2.875rem);line-height:1.26;letter-spacing:-.008em;
+  color:var(--cream);max-width:26ch;text-shadow:0 1px 24px rgba(24,36,54,.3)}
+.veil cite{font-style:normal;font-size:var(--fs-eyebrow);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cream);text-shadow:0 1px 18px rgba(24,36,54,.55)}
+.veil--left .veil__inner{align-items:flex-start;text-align:left}
+.veil--left > img{object-position:70% 40%}
+.veil--left .veil__wash{background:linear-gradient(270deg,rgba(38,54,78,0) 0%,
+  rgba(36,52,76,.26) 26%,rgba(32,48,72,.5) 52%,rgba(28,44,68,.6) 74%,
+  rgba(24,40,62,.68) 100%)}
+@media(max-width:700px){
+  .veil__inner,.veil--left .veil__inner{align-items:flex-start;text-align:left}
+  .veil__wash{background:linear-gradient(180deg,rgba(34,50,74,.42),rgba(24,40,62,.72))!important}
+}
+
+/* ============================================================
+   15 · I — MARBLE  (travertine wash, big head, label/value pairs)
+   ============================================================ */
+
+.marble{position:relative;isolation:isolate;overflow:hidden;background:var(--cream)}
+.marble::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:url("../img/texture.png") center/cover no-repeat;opacity:.62;
+  mix-blend-mode:soft-light}
+.marble::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(243,236,216,.35),rgba(243,236,216,0) 40%)}
+
+.pairs{display:flex;flex-wrap:wrap;gap:clamp(24px,3.2vw,60px);
+  margin-top:clamp(26px,2.2vw,42px)}
+.pair dt{font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--navy);margin-bottom:.7em}
+.pair dd{font-size:var(--fs-body);line-height:1.62;color:var(--mocha);max-width:22ch}
+.night .pair dt{color:var(--cream)}
+.night .pair dd{color:var(--n-body)}
+
+/* ============================================================
+   16 · PAGE-SPECIFIC PIECES
+   ============================================================ */
+
+/* --- roster: every card specified identically (Our Team) --- */
+.person .fig{aspect-ratio:1/1;border-radius:16px;margin-bottom:clamp(12px,.95vw,18px);
+  background:var(--card);display:grid;place-items:center}
+.person .fig p{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mocha);text-align:center;padding:0 14px;line-height:2}
+/* placeholder monogram until the September shoot — a set initial on the card
+   bed reads as a person's place, where "HEADSHOT / SEPTEMBER SHOOT" read as
+   a production note left on the page */
+.person .fig[data-monogram]::before{content:attr(data-monogram);
+  font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1.6rem,2.1vw,2.5rem);letter-spacing:.02em;
+  color:var(--navy);opacity:.42}
+.person .fig[data-monogram]{background:var(--card)}
+.person b{display:block;font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1.06rem,1.15vw,1.37rem);line-height:1.2;color:var(--umber)}
+.person span{display:block;margin-top:5px;font-size:var(--fs-sm);color:var(--mocha)}
+.person--held .fig{background:linear-gradient(150deg,rgba(30,58,95,.13),rgba(30,58,95,.04));
+  border:1px dashed rgba(30,58,95,.32)}
+.person--held .fig p{color:var(--navy);opacity:.75}
+.person--held b{color:var(--navy)}
+
+/* --- portrait vessel where a photograph is withheld --- */
+.portrait{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
+  background:linear-gradient(160deg,var(--navy),var(--navy-3) 62%);display:grid;place-items:center;
+  border:1px solid rgba(243,236,216,.14)}
+.portrait::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(90% 70% at 30% 20%,rgba(243,236,216,.1),transparent 65%)}
+.portrait p{position:relative;z-index:1;max-width:30ch;text-align:center;padding-inline:2em;
+  font-size:var(--fs-eyebrow);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(243,236,216,.62);line-height:2.2;text-wrap:balance}
+
+/* --- atlas of countries (About Us) --- */
+.atlas{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5em clamp(14px,1.4vw,26px);
+  font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1.2rem,2.2vw,2.1rem);line-height:1.7;color:rgba(243,236,216,.72)}
+.atlas i{font-style:normal;color:rgba(243,236,216,.28)}
+.atlas b{font-weight:300;color:var(--cream)}
+
+/* --- THE OPENING STANDFIRST -------------------------------------------------
+   The post-hero section on most pages is one paragraph and no heading. At body
+   register that reads as a stray block in an empty field, so it takes the
+   display voice and a hairline to hang from: a standfirst the page opens on.
+   Copy is untouched; only its setting changes.
+
+   Notes worth keeping:
+   · the width cap sits on the WRAPPER so the rule and the copy share one width
+     — a full-bleed rule over a 57%-wide paragraph reads as two unrelated things;
+   · the display font-size sits on the wrapper too, because an `em` cap on a
+     wrapper resolves against the wrapper's own size, not the child's;
+   · the kicker is optional — About Us has none, Our Approach and What's
+     Included do, and it keeps its own small size inside the display context. */
+.opening{font-size:clamp(1.35rem,2.05vw,2.5rem);
+  border-top:1px solid var(--hair-soft);padding-top:clamp(24px,2.2vw,40px);
+  max-width:min(28em,74%)}
+.opening .eyebrow{margin-bottom:clamp(18px,1.5vw,28px)}
+.opening__line{font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:inherit;line-height:1.38;letter-spacing:-.004em;
+  color:var(--umber);text-wrap:pretty}
+.night .opening{border-top-color:var(--n-hair)}
+.night .opening__line{color:var(--n-head)}
+/* below the fold-to-one-column point the % cap only starves the measure */
+@media(max-width:700px){.opening{max-width:none}}
+
+/* --- the bilingual moment (About Us) ---
+   The English hangs from the left, the Arabic from the right, sharing one
+   baseline and divided by a hairline: the composition says "both scripts".
+   Previously the Arabic was a `direction:rtl` block inside .statement, so it
+   right-aligned to that 52em edge and floated mid-page, anchored to nothing. */
+.bilingual{display:grid;grid-template-columns:1fr auto;
+  gap:clamp(24px,4.7vw,90px);align-items:end;
+  padding-bottom:clamp(28px,2.9vw,56px);border-bottom:1px solid var(--hair-soft)}
+.bilingual__en{max-width:none}
+.bilingual__ar{direction:rtl;text-align:right;margin-bottom:.06em;
+  /* Canela and Söhne carry no Arabic — naming them here silently fell through
+     to the platform's generic serif. A licensed Arabic display cut still needs
+     choosing; until then prefer a refined naskh where one is installed. */
+  font-family:"Amiri","Noto Naskh Arabic","Sakkal Majalla","Traditional Arabic",
+    "Geeza Pro","Simplified Arabic",Georgia,serif;
+  /* naskh sets small on the em — ~1.4x the Latin display size to read as its
+     equal rather than as a caption under it */
+  font-weight:400;font-size:clamp(2.6rem,5.1vw,6.1rem);line-height:1.32;
+  color:var(--navy-2);white-space:nowrap}
+@media(max-width:760px){
+  .bilingual{grid-template-columns:1fr;align-items:start;gap:clamp(20px,3vw,34px)}
+  .bilingual__ar{text-align:left}
+}
+
+/* the label row spans the composition rather than stopping at the 52em measure */
+.pairs--wide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(26px,2.4vw,44px) clamp(30px,4.2vw,80px)}
+.pairs--wide .pair dd{max-width:26ch}
+@media(max-width:760px){.pairs--wide{grid-template-columns:1fr}}
+
+/* --- the pinned safety strip (FAQ) --- */
+.has-strip{--strip-h:clamp(40px,2.73vw,52px)}
+.pinned{position:fixed;top:0;left:0;width:100%;z-index:85;
+  min-height:var(--strip-h,44px);display:flex;align-items:center;
+  background:var(--navy-3);color:var(--cream)}
+.has-strip .nav{top:var(--strip-h)}
+.has-strip main{padding-top:var(--strip-h)}
+/* the strip sits directly above the nav, so it takes the nav's own --edge
+   inset, not the body shell — otherwise its copy starts 47px left of the logo */
+.pinned .wrap{width:100%;max-width:none;margin:0;padding-inline:var(--edge);
+  display:flex;flex-wrap:wrap;align-items:center;gap:.4em 1.2em;
+  padding-block:clamp(7px,.5vw,10px);font-size:var(--fs-sm)}
+.pinned b{font-weight:500}
+.pinned a{display:inline-flex;align-items:center;gap:.5em;
+  border-bottom:1px solid rgba(243,236,216,.45);padding-bottom:2px;
+  transition:border-color .4s var(--ease)}
+.pinned a:hover{border-color:var(--cream)}
+
+/* --- search (FAQ) --- */
+.finder{position:relative;display:block;max-width:520px}
+.finder input{width:100%;padding:16px 46px 16px 20px;border:1px solid var(--hair);
+  border-radius:100px;background:var(--cream-2);color:var(--umber);font-size:var(--fs-body);
+  transition:border-color .4s var(--ease),background .4s var(--ease)}
+.finder input::placeholder{color:var(--mocha);opacity:.85}
+.finder input:focus{outline:none;border-color:var(--navy);background:var(--cream-2)}
+.finder svg{position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  width:15px;height:15px;color:var(--mocha);pointer-events:none}
+.finder__count{margin-top:10px;font-size:var(--fs-xs);color:var(--mocha);min-height:1.4em}
+
+/* --- question group heading (FAQ) --- */
+.qgroup + .qgroup{margin-top:clamp(46px,4.2vw,80px)}
+/* The group number sits in the same gutter as the ledger numerals below it,
+   so the group title and every question title share one axis. */
+.qgroup__head{display:flex;align-items:baseline;gap:var(--gut);
+  margin-bottom:clamp(16px,1.3vw,24px)}
+.qgroup__head b{flex:none;min-width:var(--no-w);
+  font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-no);
+  letter-spacing:.14em;color:var(--mocha);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.night .qgroup__head b{color:var(--n-mute)}
+.ledger__row.is-hidden,.nightlist__row.is-hidden{display:none}
+
+/* --- category rail (FAQ) --- */
+.qgrid{display:grid;grid-template-columns:clamp(170px,17.9vw,290px) 1fr;
+  gap:clamp(24px,3.2vw,60px);align-items:start}
+.qrail{position:sticky;top:calc(clamp(88px,7.4vw,132px) + var(--strip-h,0px))}
+.qrail p{font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--mocha);
+  margin-bottom:clamp(14px,1.1vw,20px)}
+.qrail p i{font-style:normal}
+.qrail a,.qhead__jump a,.invidx a{display:flex;gap:.8em;padding:9px 0;border-top:1px solid var(--hair);opacity:.55;
+  font-size:var(--fs-sm);line-height:1.4;color:var(--body);
+  transition:color .45s var(--ease),opacity .45s var(--ease)}
+.qrail a:last-of-type,.qhead__jump a:last-of-type,.invidx a:last-of-type{border-bottom:1px solid var(--hair)}
+.qrail a b,.qhead__jump a b,.invidx a b{flex:none;font-weight:500;font-size:var(--fs-no);
+  letter-spacing:.14em;padding-top:.28em;font-variant-numeric:tabular-nums}
+.qrail a:hover,.qrail a.is-current,.qhead__jump a:hover,
+.invidx a:hover,.invidx a.is-current{opacity:1;color:var(--navy)}
+.night .qrail p{color:var(--n-mute)}
+.night .qrail a{border-color:var(--n-hair);color:var(--cream)}
+.night .qrail a:last-of-type{border-bottom-color:var(--n-hair)}
+.night .qrail a:hover,.night .qrail a.is-current{opacity:1;color:var(--cream)}
+
+/* --- a section whose left column carries the section head ------------------
+   The two never-collapsed answers ran as one 30em column down the left of a
+   1320px shell, so two thirds of the band was an empty field with nothing to
+   hold it. The head moves into a column of its own — the same sticky-rail
+   idiom the two question sets below use, widened enough for display type, and
+   carrying the index and the way to reach us while a long answer is read. */
+.qgrid--head{grid-template-columns:.82fr 1.18fr;gap:clamp(28px,4.4vw,84px)}
+.qhead{position:sticky;top:calc(clamp(88px,7.4vw,132px) + var(--strip-h,0px))}
+.qhead > .eyebrow + *{margin-top:clamp(20px,1.68vw,32px)}
+.qhead__jump{margin-top:clamp(28px,2.5vw,46px)}
+.qhead .btn{margin-top:clamp(24px,2.1vw,38px)}
+@media(max-width:900px){
+  .qgrid{grid-template-columns:1fr}
+  .qgrid--head{grid-template-columns:1fr}
+  .qhead{position:static;margin-bottom:clamp(28px,3.8vw,48px)}
+  .qhead__jump{display:none}
+  .qrail{position:static;margin-bottom:clamp(24px,3.4vw,40px)}
+}
+
+/* --- the fridge sheet, drawn as the object it becomes --- */
+.sheet{position:relative;background:var(--cream-2);border:1px solid var(--hair-soft);
+  border-radius:4px;padding:clamp(26px,2.3vw,44px);
+  box-shadow:0 1px 0 rgba(42,33,21,.06),0 22px 44px -28px rgba(42,33,21,.3);
+  transform:rotate(-1.1deg)}
+.sheet::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;
+  background:repeating-linear-gradient(90deg,var(--hair-soft) 0 4px,transparent 4px 9px)}
+.sheet ul{margin-top:clamp(14px,1.1vw,20px)}
+.sheet li{position:relative;padding:9px 0 9px 22px;font-size:var(--fs-sm);line-height:1.55;
+  color:var(--umber);border-bottom:1px dotted rgba(42,33,21,.16)}
+.sheet li:last-child{border-bottom:0}
+.sheet li::before{content:"";position:absolute;left:2px;top:1.05em;width:7px;height:7px;
+  border-radius:50%;border:1px solid var(--navy);opacity:.55}
+.sheet li b{font-weight:500;color:var(--navy)}
+.sheet li{max-width:var(--measure)}
+/* the one line on the fridge sheet that must not be skimmed — carried by
+   weight and a filled marker, not by colour */
+.sheet li.is-alarm{color:var(--umber);font-weight:500}
+.sheet li.is-alarm::before{border-color:var(--navy);background:var(--navy)}
+.sheet__foot{margin-top:clamp(16px,1.26vw,24px);display:flex;justify-content:space-between;
+  gap:1em;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha)}
+
+/* --- article cards + long-form --- */
+.read{display:block}
+.read .fig{margin-bottom:clamp(14px,1.16vw,22px)}
+.read .fig img{transition:transform 1.1s var(--ease)}
+.read:hover .fig img{transform:scale(1.04)}
+.read h3{margin-bottom:.5em;max-width:24ch;transition:color .4s var(--ease)}
+.read:hover h3{color:var(--navy-2)}
+.read p{font-size:var(--fs-sm);color:var(--mocha);max-width:32ch}
+.read .qlink{margin-top:clamp(12px,.95vw,18px)}
+
+.article{max-width:var(--measure)}
+.article > p{font-weight:300;line-height:1.72}
+.article > p + p{margin-top:1.15em}
+.article > p > b:first-child{display:block;font-weight:500;color:var(--umber);margin-bottom:.3em}
+.article__meta{display:flex;flex-wrap:wrap;gap:.6em 1.4em;
+  font-size:var(--fs-eyebrow);letter-spacing:.2em;text-transform:uppercase;color:var(--mocha)}
+.article__lead{font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-focus);
+  line-height:1.5;color:var(--umber);margin-bottom:clamp(24px,2.1vw,40px)}
+
+/* ── the long reads, as numbered sequences ──
+   Both Resources articles are lists of things to ask or do, but they were set as
+   one column of prose with bold run-in labels — a wall with no hierarchy and the
+   right two-thirds empty. Each item now gets a set numeral, a display question
+   and its answer, with a sticky rail so a long read stays navigable. */
+.asks{display:grid;gap:clamp(38px,3.6vw,72px)}
+.ask{display:grid;grid-template-columns:clamp(46px,4vw,74px) 1fr;
+  gap:clamp(12px,1.5vw,28px) clamp(14px,1.7vw,32px);align-items:baseline}
+.ask__no{font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1rem,1.4vw,1.6rem);line-height:1.2;color:var(--navy);opacity:.46;
+  font-feature-settings:"tnum"}
+.ask__q{grid-column:2;font-family:"Canela",Georgia,serif;font-weight:300;
+  font-size:clamp(1.24rem,1.79vw,2.1rem);line-height:1.28;letter-spacing:-.006em;
+  color:var(--umber);max-width:26em;text-wrap:balance}
+.ask__a{grid-column:2;margin-top:clamp(10px,.95vw,18px);
+  font-weight:300;line-height:1.72;color:var(--body);max-width:var(--measure)}
+.ask--close .ask__q{color:var(--navy)}
+@media(max-width:760px){
+  .ask{grid-template-columns:1fr;gap:clamp(8px,1.2vw,14px)}
+  .ask__q,.ask__a{grid-column:1}
+  .ask__no{font-size:var(--fs-sm);letter-spacing:.14em}
+}
+
+/* ── contact channels: one row per way of reaching us ──
+   The number, the WhatsApp and the email were each listed as a value row and
+   then repeated as a button — the same three things twice, which is what made
+   the column read as a pile. Each is now a single tappable row. */
+.channels{margin-top:clamp(14px,1.2vw,24px);border-top:1px solid var(--hair)}
+.channel{display:grid;grid-template-columns:clamp(96px,9vw,150px) 1fr auto;
+  gap:clamp(12px,1.4vw,26px);align-items:baseline;
+  padding-block:clamp(15px,1.3vw,24px);border-bottom:1px solid var(--hair);
+  transition:color .4s var(--ease)}
+.channel__k{font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mocha)}
+.channel__v{font-size:var(--fs-focus);line-height:1.35;color:var(--umber)}
+.channel__go{align-self:center;flex:none;color:var(--navy);opacity:.5;
+  transition:transform .45s var(--ease),opacity .4s var(--ease)}
+a.channel:hover .channel__v{color:var(--navy)}
+a.channel:hover .channel__go{transform:translateX(4px);opacity:1}
+.channel--static{cursor:default}
+@media(max-width:600px){
+  .channel{grid-template-columns:1fr auto;gap:.35em clamp(12px,1.4vw,26px)}
+  .channel__k{grid-column:1/-1}
+}
+
+/* --- contact: pairs as a ruled list, map, form --- */
+.detail{display:grid;grid-template-columns:auto 1fr;gap:.6em clamp(16px,1.5vw,28px);
+  padding-block:clamp(13px,1.05vw,20px);border-top:1px solid var(--hair);align-items:baseline}
+.detail:last-of-type{border-bottom:1px solid var(--hair)}
+.detail dt{font-family:"Sohne",sans-serif;font-weight:500;font-size:var(--fs-eyebrow);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mocha);min-width:clamp(80px,7vw,120px)}
+.detail dd{font-size:clamp(1rem,1vw,1.15rem);color:var(--umber)}
+
+.maplinks{display:flex;flex-wrap:wrap;gap:8px}
+.maplinks a{padding:9px 16px;border:1px solid var(--hair);border-radius:100px;
+  font-size:10.6px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);
+  transition:background .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease)}
+.maplinks a:hover{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+
+.form{display:grid;gap:clamp(14px,1.16vw,22px)}
+.field{display:grid;gap:8px}
+.field > span{font-size:var(--fs-eyebrow);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mocha)}
+.field input,.field textarea,.field select{width:100%;padding:14px 16px;
+  border:1px solid var(--hair);border-radius:12px;background:var(--cream-2);color:var(--umber);
+  font-size:var(--fs-body);transition:border-color .4s var(--ease)}
+.field textarea{min-height:130px;resize:vertical;border-radius:14px}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--navy)}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.16vw,22px)}
+.form__note{font-size:var(--fs-xs);color:var(--mocha)}
+@media(max-width:600px){.form__row{grid-template-columns:1fr}}
+
+/* ============================================================
+   17 · FOOTER
+   ============================================================ */
+
+.foot{position:relative;isolation:isolate;overflow:hidden;background:var(--navy);color:var(--n-body)}
+.foot__media{position:absolute;inset:0;z-index:-2}
+.foot__media img{width:100%;height:100%;object-fit:cover}
+.foot__scrim{position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.48) 0%,var(--navy-2) 100%)}
+.foot__top{padding:clamp(56px,4.6vw,88px) 0 clamp(30px,2.5vw,48px)}
+.foot__cols{display:grid;grid-template-columns:1.35fr repeat(4,1fr);gap:clamp(24px,2.7vw,52px)}
+.foot__brand img{height:clamp(34px,2.42vw,46px);width:auto}
+.foot__brand p{margin-top:clamp(14px,1.18vw,22px);font-family:"Canela Text",Georgia,serif;
+  font-weight:300;font-size:clamp(.92rem,.84vw,1rem);line-height:1.6;color:var(--n-body);
+  max-width:22em}
+.foot__brand .meta{margin-top:clamp(14px,1.18vw,22px);color:var(--n-mute)}
+.foot h4{font-family:"Sohne",sans-serif;font-weight:500;font-size:clamp(9.4px,.554vw,10.56px);
+  line-height:1.6;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);
+  margin-bottom:clamp(14px,1.05vw,20px)}
+.foot__cols a{display:block;font-family:"Canela Text",Georgia,serif;font-weight:300;
+  font-size:clamp(.95rem,.857vw,1.02rem);line-height:1.95;color:var(--n-body);
+  transition:color .4s var(--ease)}
+.foot__cols a:hover{color:var(--cream)}
+
+.foot__wordmark{margin:0;padding-inline:var(--pad);text-align:center;
+  font-family:"Canela",Georgia,serif;font-weight:300;font-size:var(--fs-wordmark);
+  line-height:1.08;letter-spacing:-.02em;white-space:nowrap;
+  background-image:linear-gradient(rgba(255,255,255,.34),rgba(255,255,255,.34)),
+    url("../img/footer.jpg");
+  background-size:auto,100% 350%;background-position:0 0,center 42%;
+  background-repeat:repeat,no-repeat;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent}
+.foot__base{margin-top:clamp(34px,3.1vw,58px);border-top:1px solid var(--n-hair);
+  padding-block:clamp(22px,1.6vw,30px) clamp(28px,2.1vw,40px);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6em 2em;
+  font-family:"Sohne",sans-serif;font-weight:300;font-size:clamp(10.4px,.588vw,11.2px);
+  letter-spacing:.03em;color:var(--n-mute)}
+@media(max-width:1080px){
+  .foot__cols{grid-template-columns:repeat(2,1fr)}
+  .foot__brand{grid-column:1/-1}
+}
+@media(max-width:600px){
+  .foot__cols{grid-template-columns:1fr}
+  .foot__base{flex-direction:column}
+}
+
+/* ============================================================
+   18 · UTILITIES
+   ============================================================ */
+
+.stack-xs > * + *{margin-top:clamp(8px,.63vw,12px)}
+.stack-s  > * + *{margin-top:clamp(14px,1.05vw,20px)}
+.stack-m  > * + *{margin-top:clamp(20px,1.68vw,32px)}
+.stack-l  > * + *{margin-top:clamp(28px,2.52vw,48px)}
+.stack-xl > * + *{margin-top:clamp(40px,3.7vw,70px)}
+.centre{text-align:center;margin-inline:auto}
+/* A register change is a beat, not a chapter — one display line does not need
+   a full viewport on top of band--lg padding. */
+.screen{min-height:clamp(200px,26svh,320px);display:flex;flex-direction:column;
+  justify-content:center}
+.mw-14{max-width:14ch}.mw-17{max-width:17ch}.mw-20{max-width:20ch}
+.mw-24{max-width:24ch}.mw-30{max-width:30ch}
+.nowrap{white-space:nowrap}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ============================================================
+   19 · SMALL SCREENS
+   Full-viewport compositions are a desktop device. On a phone the
+   same emptiness reads as a loading error, so let content set height.
+   ============================================================ */
+
+@media(max-width:760px){
+  .gp{--band:clamp(52px,9vw,80px);--band-lg:clamp(64px,11vw,100px)}
+  .fee{min-height:0}
+  .screen{min-height:0}
+  .fee__no{font-size:clamp(4.6rem,22vw,7rem)}
+  .quad{gap:clamp(16px,4vw,24px)}
+  /* A 40px gutter costs a tenth of a phone's width. So the numeral moves
+     above its title and the whole row goes flush — rather than leaving the
+     title indented and the body not, which reads as a ragged edge. */
+  .ledger__row summary,.ledger__head{flex-direction:column;align-items:flex-start;
+    gap:clamp(6px,1.6vw,10px)}
+  .ledger--plain .ledger__head{flex-direction:row;align-items:baseline;gap:var(--gut)}
+  .ledger__b{padding-left:0}
+  .ledger--plain .ledger__t{max-width:none}
+  /* the chevron is an affordance and stays beside its question, so the
+     night-list body keeps its (much smaller) indent */
+  .detail{grid-template-columns:1fr;gap:.25em}
+  .sheet{transform:none}
+  .foot__wordmark{white-space:normal;line-height:1.02}
+  .filmband{min-height:0;padding-top:clamp(180px,52vw,300px)}
+}
+
+/* ============================================================
+   20 · MOTION PREFERENCES
+   ============================================================ */
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js [data-reveal],.js [data-reveal-fade]{opacity:1!important;transform:none!important;
+    filter:none!important}
+  .js [data-reveal-wipe]{clip-path:none!important}
+  .cue i::after{animation:none}
+  .gp *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}

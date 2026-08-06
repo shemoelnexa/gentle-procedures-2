@@ -1,4 +1,17 @@
 node_modules/
+.shots*/
+
+# Canela / Canela Text / Söhne are TRIAL cuts. Both foundries' trial licences
+# forbid web use and redistribution and this remote is public, so these stay
+# local — drop the licensed files in under the same names when they arrive (see
+# the @font-face block at the top of inner/css/inner.css).
+# ⚠️ This only stops NEW ones being added. 128 trial .otf files are already
+# tracked from earlier commits — assets/fonts/, canela/, sohne-font-family/ —
+# and an ignore rule does nothing about those. They need git rm + a history
+# rewrite to actually leave the public repo.
+inner/fonts/*.otf
+coming-soon/fonts/*.otf
+
 *.log
 .DS_Store
 Thumbs.db
