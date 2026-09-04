@@ -1,0 +1,63 @@
+GENTLE PROCEDURES CLINIC — WEBSITE COPY v2.1
+Hand-off for Muneer · 31 August 2026
+
+WHAT THIS IS
+------------
+The staging build (html.nexatestwp.com/Gentle-Procedures) with every change from the
+client's copy document "GP_Clinic_Website_Final_Copy_v2_1" applied. Same file names,
+same folder structure, same Bootstrap 5.3 + AOS setup. Nothing was rebuilt from
+scratch — you can diff any page against your copy of the original.
+
+Open index.html in a browser and it runs as-is.
+
+WHAT CHANGED
+------------
+CHANGES-APPLIED.md, in this folder, is the full list, page by page. The short version:
+
+  - 13 live pages, down from 15. Two pages were folded into others.
+  - Nav drops from 8 items to 7 ("What's Included" removed).
+  - assets/css/style.css gained four new component blocks at the end of the file:
+        .gp-day-list       statement lists (Home, and the surgeon's credentials)
+        .gp-fee-card       the two "what the fee reflects" cards on Pricing
+        .gp-media-col      lets a photograph grow when the copy beside it is taller
+        .gp-surgeon__title the role line under the surgeon's name
+    Nothing existing in the stylesheet was edited or deleted — only added to.
+
+TWO THINGS THAT NEED YOU
+------------------------
+1. REDIRECTS. our-surgeon.html and whats-included.html are now placeholder stubs
+   with a meta refresh and a JS redirect. They need proper server-side 301s:
+
+        our-surgeon.html    ->  our-team.html#surgeon
+        whats-included.html ->  what-to-expect.html#included
+
+2. RENAMED IMAGES. Four team headshots were renamed to match the corrected names.
+   The files are in assets/images/ under their new names:
+
+        team-layla.jpg   ->  team-kaitlyn.jpg
+        team-mariam.jpg  ->  team-jaron.jpg
+        team-sara.jpg    ->  team-rena-lyka.jpg
+        team-noor.jpg    ->  team-shireen.jpg
+
+   These are still the old placeholder photographs. Real headshots are outstanding.
+
+DO NOT PUBLISH YET
+------------------
+  - The surgeon's profile on our-team.html is full of [square brackets]. Every one
+    is a real fact the client is supplying. They must not be invented or guessed.
+    There is an HTML comment marking the block.
+  - "Including VAT" on the pricing band is on hold pending the client's adviser.
+  - Telephone, WhatsApp, opening hours and the DHA licence number all still read
+    "to confirm".
+  - The client has asked that the staging address be password-protected until
+    launch, because it now carries the surgeon's name.
+
+The full outstanding list is at the end of CHANGES-APPLIED.md.
+
+NOTES
+-----
+  - The lounge film on several pages still points at a placeholder video hosted on
+    jayasom.com. It needs replacing before launch.
+  - The Cloudflare beacon and challenge scripts that the staging host injects have
+    been stripped from these files. Your host will re-inject them.
+  - Bootstrap and AOS still load from jsDelivr, exactly as before.

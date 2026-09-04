@@ -16,3 +16,8 @@ coming-soon/fonts/*.otf
 .DS_Store
 Thumbs.db
 npm-debug.log*
+
+# Trial cuts again -- same licence problem as the .otf rules above. The site/
+# build ships webfonts, so keep the .woff2 out of this public remote too.
+site/assets/fonts/*.woff2
+staging/assets/fonts/*.woff2

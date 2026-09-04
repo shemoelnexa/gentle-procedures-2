@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gentle Procedures Clinic | Exceptional Care, Delivered Gently | Dubai</title>
+  <meta name="description" content="The first international clinic of The Pollock Group, now home in Dubai. Newborn circumcision, done as gently as we know how.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icons/logo-mark.png">
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="gp-header" id="siteHeader">
+    <nav class="navbar navbar-expand-lg gp-navbar" aria-label="Primary">
+      <div class="container-fluid gp-header__inner">
+
+        <a class="navbar-brand gp-brand" href="index.html" aria-label="Gentle Procedures Clinic, home">
+          <img src="assets/images/header-logo.png" alt="logo" class="gp-brand__mark">
+        </a>
+
+        <button class="gp-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="dropdown gp-lang gp-header__mobile-lang d-lg-none">
+          <button class="btn gp-lang__btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">En</button>
+          <ul class="dropdown-menu dropdown-menu-end gp-lang__menu">
+            <li><button class="dropdown-item" type="button">English</button></li>
+            <li><button class="dropdown-item" type="button">العربية</button></li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse gp-nav-collapse">
+          <ul class="navbar-nav gp-nav mx-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-approach.html">Our Approach</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-team.html">Our Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="what-to-expect.html">What to expect</a></li>
+            <li class="nav-item"><a class="nav-link" href="faqs.html">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          </ul>
+
+          <div class="gp-nav-actions">
+            <div class="dropdown gp-lang">
+              <button class="btn gp-lang__btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                En
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end gp-lang__menu">
+                <li><button class="dropdown-item" type="button">English</button></li>
+                <li><button class="dropdown-item" type="button">العربية</button></li>
+              </ul>
+            </div>
+            <a class="btn gp-btn gp-btn--outline-light gp-btn--sm" href="contact-us.html">
+              Contact us <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ MOBILE OFFCANVAS MENU ============ -->
+  <div class="offcanvas offcanvas-start gp-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <a href="index.html" class="gp-brand" data-bs-dismiss="offcanvas">
+        <img src="assets/icons/logo-mark.png" alt="" class="gp-brand__mark" width="30" height="25">
+        <img src="assets/icons/logo-wordmark.svg" alt="Gentle Procedures Clinic" class="gp-brand__wordmark">
+      </a>
+      <button type="button" class="btn-close gp-offcanvas__close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="gp-offcanvas__nav list-unstyled">
+        <li><a href="index.html" data-bs-dismiss="offcanvas">Home</a></li>
+        <li><a href="about-us.html" data-bs-dismiss="offcanvas">About Us</a></li>
+        <li><a href="our-approach.html" data-bs-dismiss="offcanvas">Our Approach</a></li>
+        <li><a href="our-team.html" data-bs-dismiss="offcanvas">Our Team</a></li>
+        <li><a href="what-to-expect.html" data-bs-dismiss="offcanvas">What to expect</a></li>
+        <li><a href="faqs.html" data-bs-dismiss="offcanvas">FAQ</a></li>
+        <li><a href="resources.html" data-bs-dismiss="offcanvas">Resources</a></li>
+      </ul>
+      <a class="btn gp-btn gp-btn--navy w-100 mt-4" href="contact-us.html" data-bs-dismiss="offcanvas">Contact us &rarr;</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ============ HERO ============ -->
+    <section class="gp-hero" id="top">
+      <div class="gp-hero__media">
+        <picture>
+          <source media="(max-width: 991.98px)" srcset="assets/images/hero-bg-mobile.png">
+          <img src="assets/images/hero-bg.jpg" alt="A mother lovingly holds her baby at Gentle Procedures Clinic" class="gp-hero__img">
+        </picture>
+        <div class="gp-hero__gradient" aria-hidden="true"></div>
+      </div>
+
+      <div class="container-fluid gp-hero__content">
+        <div data-aos="fade-up" data-aos-duration="900">
+          <h1 class="gp-hero__title">
+            <span>Exceptional care,</span>
+            <span>delivered gently.</span>
+          </h1>
+          <p class="gp-hero__lead">Newborn circumcision is all we do. Now home in Dubai.</p>
+          <div class="gp-hero__actions">
+            <a href="what-to-expect.html" class="btn gp-btn gp-btn--cream">
+              What to expect
+              <span class="gp-icon-circle" aria-hidden="true">
+                <img src="assets/icons/arrow-up-outline.svg" alt="" class="gp-icon-arrow">
+              </span>
+            </a>
+            <a href="contact-us.html" class="btn gp-btn gp-btn--outline-light">Plan your visit</a>
+          </div>
+        </div>
+
+        <a href="#stats" class="gp-scroll-indicator d-none d-lg-flex" aria-label="Scroll to next section">
+          <span>Scroll</span>
+          <span class="gp-scroll-indicator__line" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ FLOATING WHATSAPP ============ -->
+    <a href="https://wa.me/" class="gp-whatsapp-float" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+      <img src="assets/icons/whatsapp-solid.svg" alt="" width="24" height="24">
+      <span class="gp-whatsapp-float__label">Message us</span>
+    </a>
+
+    <!-- ============ STATS / GLOBAL STANDARD ============ -->
+    <section class="gp-section gp-section--cream" id="stats">
+      <div class="container gp-section__inner">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h2 class="gp-heading-lg">A global standard, now in <span class="gp-accent-navy">Dubai</span></h2>
+            <p class="gp-body-lg">One technique, refined over decades, practised in Gentle Procedures clinics in Canada, the United States, the United Kingdom, Ireland and Australia. Ours is the first in the Middle East.</p>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <div class="gp-media-card gp-media-card--stats">
+              <img src="assets/images/stats-family.png" alt="A family together at Gentle Procedures clinic" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <dl class="row gp-stats" data-aos="fade-up">
+          <div class="col-6 col-md-3 gp-stats__item">
+            <dt class="gp-stats__number"><span class="gp-stats__count" data-count-to="1">0</span></dt>
+            <dd class="gp-stats__label">Gentle technique</dd>
+          </div>
+          <div class="col-6 col-md-3 gp-stats__item">
+            <dt class="gp-stats__number"><span class="gp-stats__count" data-count-to="4">0</span></dt>
+            <dd class="gp-stats__label">Continents</dd>
+          </div>
+          <div class="col-6 col-md-3 gp-stats__item">
+            <dt class="gp-stats__number"><span class="gp-stats__count" data-count-to="30">0</span><span class="gp-stats__unit">yrs</span></dt>
+            <dd class="gp-stats__label">Of proven results</dd>
+          </div>
+          <div class="col-6 col-md-3 gp-stats__item">
+            <dt class="gp-stats__number"><span class="gp-stats__count" data-count-to="100">0</span><span class="gp-stats__unit">k+</span></dt>
+            <dd class="gp-stats__label">Families welcomed</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO / LOUNGE ============ -->
+    <section class="gp-video">
+      <video id="clinicVideo" class="gp-video__bg" poster="assets/images/lounge-video.jpg" playsinline loop preload="metadata">
+        <source src="https://www.jayasom.com/hubfs/Jayasom%20-%20Web%20Video%20-%205MB.mp4" type="video/mp4">
+      </video>
+
+      <div class="container-fluid gp-video__inner">
+        <div class="gp-video-card" data-aos="fade-up">
+          <p class="gp-eyebrow">The film</p>
+          <p class="gp-video-card__title">From our family to yours.</p>
+          <div class="gp-video-card__controls">
+            <div class="gp-video-card__playgroup">
+              <button type="button" class="gp-play-btn" id="playVideoBtn" aria-pressed="false">
+                <img src="assets/icons/play-filled.svg" alt="" class="gp-play-btn__icon">
+                <span class="gp-play-btn__pause-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Play video</span>
+              </button>
+              <span class="gp-video-card__label" id="videoCardLabel">Play Video</span>
+            </div>
+            <button type="button" class="gp-mute-btn" id="muteVideoBtn" aria-pressed="false">
+              <img src="assets/icons/unmute.svg" alt="" width="16" height="16" class="gp-mute-btn__icon gp-mute-btn__icon--on">
+              <img src="assets/icons/mute.svg" alt="" width="16" height="16" class="gp-mute-btn__icon gp-mute-btn__icon--off">
+              <span class="visually-hidden">Toggle sound</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE JOURNEY ============ -->
+    <section class="gp-section gp-section--cream" id="journey">
+      <div class="container gp-section__inner">
+        <div class="row gy-5">
+          <div class="col-lg-5 gp-media-col" data-aos="fade-right">
+            <p class="gp-eyebrow gp-eyebrow--navy">The Journey</p>
+            <h2 class="gp-heading-lg">From the moment you book to the days after you&rsquo;re <span class="gp-accent-navy">home</span>.</h2>
+            <p class="gp-body-lg">Every detail considered for you and your family. Before, during, and after.</p>
+            <div class="gp-media-card gp-media-card--journey mt-4 mt-lg-5">
+              <img src="assets/images/journey-family.jpg" alt="A family together after their visit to Gentle Procedures" loading="lazy">
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-left">
+            <p class="gp-body-lg gp-day-lede">From the first message to the days after you are home.</p>
+            <div class="accordion gp-accordion gp-accordion--statement" id="homeJourneyAccordion" data-aos="fade-up">
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-01" aria-expanded="true" aria-controls="home-journey-01">
+                    <span class="gp-accordion__title">Booking takes a single message, and we will ask what would make the day easier for you.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-01" class="accordion-collapse collapse show" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p class="mb-0">Booking takes one message. From that first conversation, we&rsquo;re already thinking about your day (will a big brother or sister be joining us? Would you prefer English or Arabic?) so that everything is ready before you arrive. If the morning goes sideways, as mornings with a newborn do, rescheduling is simple and entirely guilt free.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-02" aria-expanded="false" aria-controls="home-journey-02">
+                    <span class="gp-accordion__title">Parking is beneath the building, and the directions reach you well before the day.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-02" class="accordion-collapse collapse" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p>Parking is free beneath the building, entered from the rear. If you would rather stay at street level, there is RTA parking directly outside.</p>
+                <p class="mb-0">A short service road off Al Wasl Road brings you to our front door. We send the parking instructions with your directions and your map pin before the day, so nothing has to be worked out in the car. Give yourself plenty of time, because Dubai traffic is unpredictable and arriving unhurried makes the whole morning calmer. Bring your Emirates ID card, and your son&rsquo;s if it has come through.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-03" aria-expanded="false" aria-controls="home-journey-03">
+                    <span class="gp-accordion__title">Your nurse weighs your son and talks you through everything before anything happens.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-03" class="accordion-collapse collapse" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p class="mb-0">A nurse brings you through, checks your son&rsquo;s weight, and explains every detail of what happens next, nothing assumed, nothing skipped.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-04" aria-expanded="false" aria-controls="home-journey-04">
+                    <span class="gp-accordion__title">You meet your surgeon unhurried, and stay beside your son if you wish.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-04" class="accordion-collapse collapse" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p class="gp-label mb-2">About a minute</p>
+                <p class="mb-0">Then you sit with your surgeon. You are warmly encouraged to stay beside your son throughout. Once the local anaesthetic has gently taken effect, the procedure itself takes about a minute. Quick, precise, and never once rushed.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-05" aria-expanded="false" aria-controls="home-journey-05">
+                    <span class="gp-accordion__title">Afterwards a private room is yours, for feeding and for quiet.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-05" class="accordion-collapse collapse" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p class="mb-0">Afterwards, a private room is yours. Your nurse settles you in, checks on him, and gently walks you through the aftercare, every question answered. Feed him whenever he&rsquo;s ready, and there&rsquo;s a dedicated feeding room too, should you want it.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item gp-accordion__item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-journey-06" aria-expanded="false" aria-controls="home-journey-06">
+                    <span class="gp-accordion__title">You go home with everything you need, and we check in over the first few days.</span>
+                    <span class="gp-accordion__chevron gp-accordion__chevron--navy" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="home-journey-06" class="accordion-collapse collapse" data-bs-parent="#homeJourneyAccordion">
+                  <div class="accordion-body gp-accordion__body">
+                    <p class="mb-0">Your discharge pack holds everything you&rsquo;ll need, and a few small extras from us. The same guidance reaches you three ways: printed, on WhatsApp, and by email, so it can never be lost.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="what-to-expect.html" class="btn gp-btn gp-btn--navy">What to expect</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ FAQ ============ -->
+    <section class="gp-section" id="faq">
+      <img src="assets/images/faq-bg.jpg" alt="" class="gp-section__bg-photo" aria-hidden="true">
+      <div class="gp-section__overlay" aria-hidden="true"></div>
+
+      <div class="container gp-section__inner">
+        <div class="row">
+          <div class="col-lg-12" data-aos="fade-up">
+            <p class="gp-eyebrow gp-eyebrow--light">The Questions</p>
+            <h2 class="gp-heading-xl gp-heading-xl--light">Your questions, answered</h2>
+          </div>
+        </div>
+
+        <div class="accordion gp-accordion gp-accordion--dark gp-accordion--statement" id="homeFaqAccordion" data-aos="fade-up">
+
+          <div class="accordion-item gp-accordion__item">
+            <h3 class="accordion-header">
+              <button class="accordion-button gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-faq-01" aria-expanded="true" aria-controls="home-faq-01">
+                <span class="gp-accordion__title">Will it hurt him?</span>
+                <span class="gp-accordion__chevron" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div id="home-faq-01" class="accordion-collapse collapse show" data-bs-parent="#homeFaqAccordion">
+              <div class="accordion-body gp-accordion__body">
+                <p class="mb-0">Keeping your son comfortable is the part we think about most. It begins at home with a well-timed feed, and we&rsquo;ll guide you on it. When you arrive, his nurse gives him a small, carefully measured dose of comfort medicine, the area is gently numbed, and the anaesthetic is given all the time it needs to work. We never rush. Around that we add every small thing that helps a baby stay settled: a warm room, something sweet to suck on, gentle sounds, and you right beside him. The moment itself is brief, and many babies are so settled they sleep right through it. We can&rsquo;t promise yours will never make a sound, but we can promise his comfort guides every single thing we do. Most babies settle quickly and feed contentedly soon after.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item gp-accordion__item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-faq-02" aria-expanded="false" aria-controls="home-faq-02">
+                <span class="gp-accordion__title">Can I stay with him?</span>
+                <span class="gp-accordion__chevron" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div id="home-faq-02" class="accordion-collapse collapse" data-bs-parent="#homeFaqAccordion">
+              <div class="accordion-body gp-accordion__body">
+                <p class="mb-0">Yes, you can stay, and most parents do. Your calm presence close to him, your face near his and your voice low, is one of the most powerful comforts he has. What you&rsquo;d see is gentler than most parents imagine. He&rsquo;s swaddled and warm, with something sweet to suck, the area is fully numbed first, and for most babies the moment itself is calm and brief. Many sleep through it. If you&rsquo;d rather not watch, that&rsquo;s completely fine too. Some parents look only at their son&rsquo;s face, some sit close and stroke his head, and some step outside and come back the moment he&rsquo;s wrapped and ready for a cuddle. There&rsquo;s no right or wrong way, only what feels right for you. Tell us your preference, or simply decide in the moment. Whatever you choose, he is never alone.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item gp-accordion__item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed gp-accordion__button" type="button" data-bs-toggle="collapse" data-bs-target="#home-faq-03" aria-expanded="false" aria-controls="home-faq-03">
+                <span class="gp-accordion__title">What do I do the first evening?</span>
+                <span class="gp-accordion__chevron" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div id="home-faq-03" class="accordion-collapse collapse" data-bs-parent="#homeFaqAccordion">
+              <div class="accordion-body gp-accordion__body">
+                <p class="mb-0">When your son is unsettled in the first day or two, run through this simple order. Start with the most powerful comfort: feed him and hold him close, bare against your chest if you can. The warmth, your heartbeat and your smell settle a newborn like nothing else, and for many babies this alone does it. If he needs more, add gentle rhythmic motion, a slow sway or rock, and a snug swaddle to quiet the startle reflex. Sound helps too: a soft steady &lsquo;shhhh&rsquo; close to his ear, or quiet white noise across the room at a gentle volume. Dim the lights, lower your voice and slow down. If you&rsquo;re calm and relaxed, your baby is more likely to settle too. If the numbing is easing and he seems genuinely uncomfortable, a little paracetamol as we&rsquo;ve shown you is perfectly sensible. Lay him on his back to sleep, keep him comfortably cool, and if the usual comforts aren&rsquo;t enough, message us.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="faqs.html" class="btn gp-btn gp-btn--cream" data-aos="fade-up">View more questions</a>
+      </div>
+    </section>
+
+    <!-- ============ OUR APPROACH / THE STANDARD ============ -->
+    <section class="gp-section gp-section--cream" id="approach">
+      <div class="container gp-section__inner ">
+        <div data-aos="fade-up">
+          <p class="gp-eyebrow gp-eyebrow--navy">Our approach</p>
+          <h2 class="gp-heading-md">Gentle is something we practise and measure, not just promise.</h2>
+          <p class="gp-body-xl">One procedure. One technique. Our whole focus.</p>
+          <a href="our-approach.html" class="btn gp-btn gp-btn--navy">Our Approach</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISITING US ============ -->
+    <section class="gp-section gp-section--cream" id="visiting">
+      <div class="container gp-section__inner">
+        <div data-aos="fade-up">
+          <p class="gp-eyebrow gp-eyebrow--navy">Visiting Us</p>
+          <h2 class="gp-heading-xl">We would be honoured to <span class="gp-accent-navy">welcome your family.</span></h2>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-6 col-md-4">
+            <p class="gp-label">Visit</p>
+            <p class="gp-body-md"><a href="https://www.google.com/maps/search/?api=1&amp;query=Al+Ferdous+Building+3%2C+Al+Wasl+Road%2C+Dubai" target="_blank" rel="noopener">Shop 7, Al Ferdous Building 3,<br>Al Wasl Road, Dubai</a></p>
+          </div>
+          <div class="col-6 col-md-4">
+            <p class="gp-label">A member of</p>
+            <p class="gp-body-md gp-body-md--serif">The Pollock Group</p>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3" data-aos="fade-up">
+          <a href="#" class="btn gp-btn gp-btn--navy">Message Us</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="gp-footer">
+    <img src="assets/images/footer-bg.jpg" alt="" class="gp-footer__bg" aria-hidden="true">
+    <div class="gp-footer__overlay" aria-hidden="true"></div>
+
+    <div class="container gp-footer__inner">
+      <div class="row gy-5">
+        <div class="col-lg-3">
+          <div class="gp-brand gp-brand--footer">
+            <img src="assets/images/footer-logo.png" alt="logo" class="gp-brand__mark">
+          </div>
+          <p class="gp-footer__tagline">Exceptional care, delivered gently: the first international clinic of The Pollock Group.</p>
+          <div class="gp-footer__meta-row">
+            <div class="dropdown gp-lang gp-lang--footer">
+              <button class="btn gp-lang__btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">En</button>
+              <ul class="dropdown-menu gp-lang__menu">
+                <li><button class="dropdown-item" type="button">English</button></li>
+                <li><button class="dropdown-item" type="button">العربية</button></li>
+              </ul>
+            </div>
+            <p class="gp-footer__licence">DHA Licence No. [to confirm]</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h3 class="gp-footer__heading">The clinic</h3>
+          <ul class="list-unstyled gp-footer__links">
+            <li><a href="about-us.html">Our Story</a></li>
+            <li><a href="our-team.html#surgeon">Our Surgeon</a></li>
+            <li><a href="our-team.html">The Team</a></li>
+            <li><a href="contact-us.html">Visiting Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h3 class="gp-footer__heading">Discover</h3>
+          <ul class="list-unstyled gp-footer__links">
+            <li><a href="our-approach.html">The Gentle Technique</a></li>
+            <li><a href="what-to-expect.html">What to Expect</a></li>
+            <li><a href="what-to-expect.html#included">What&rsquo;s Included</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h3 class="gp-footer__heading">Connect</h3>
+          <ul class="list-unstyled gp-footer__links">
+            <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h3 class="gp-footer__heading">Get in touch</h3>
+          <ul class="list-unstyled gp-footer__links">
+            <li><a href="tel:+97140000000">Call the clinic</a></li>
+            <li><a href="mailto:hello@gentleprocedures.com">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- <p class="gp-footer__wordmark" aria-hidden="true">Gentle Procedures</p> -->
+      <div class="text-center footer__wordmar pt-5">
+        <img src="assets/images/Gentle-Procedures.png" class="gp-footer__wordmar" alt="footer__wordmar">
+      </div>
+
+      <div class="gp-footer__bottom">
+        <p>&copy; 2026 Gentle Procedures Clinic</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Al+Ferdous+Building+3%2C+Al+Wasl+Road%2C+Dubai" target="_blank" rel="noopener">Shop 7, Al Ferdous Building 3, Al Wasl Road, Dubai</a></p>
+        <p>Held with care. Your family&rsquo;s privacy comes first.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button type="button" class="gp-back-to-top" id="backToTop" aria-label="Back to top">
+    <span aria-hidden="true">&uarr;</span>
+  </button>
+
+  <!-- Bootstrap 5.3 bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS (Animate On Scroll) -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/script.js"></script></body>
+</html>
